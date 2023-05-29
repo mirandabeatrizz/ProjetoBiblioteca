@@ -48,22 +48,22 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButtonRomance" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonFantasia" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonTerror" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonSuspense" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonPsicologia" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonHumor" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonDidatico" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRomance" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnFantasia" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnTerror" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSuspense" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnPsicologia" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnHumor" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDidatico" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="jLabelCadastroDoLivro" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelCategorias" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="48" max="32767" attributes="0"/>
@@ -74,30 +74,30 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnVoltar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabelCadastroDoLivro" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelCategorias" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="jButtonRomance" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRomance" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButtonFantasia" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnFantasia" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButtonTerror" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTerror" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButtonSuspense" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSuspense" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButtonPsicologia" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnPsicologia" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButtonHumor" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnHumor" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButtonDidatico" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDidatico" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabelCadastroDoLivro">
+        <Component class="javax.swing.JLabel" name="labelCategorias">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Black" size="18" style="1"/>
@@ -108,7 +108,7 @@
             <Property name="text" type="java.lang.String" value="Categorias"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonRomance">
+        <Component class="javax.swing.JButton" name="btnRomance">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="cc" type="rgb"/>
@@ -125,7 +125,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonFantasia">
+        <Component class="javax.swing.JButton" name="btnFantasia">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="cc" type="rgb"/>
@@ -142,10 +142,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFantasiaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFantasiaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonTerror">
+        <Component class="javax.swing.JButton" name="btnTerror">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="cc" type="rgb"/>
@@ -162,7 +162,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonSuspense">
+        <Component class="javax.swing.JButton" name="btnSuspense">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="cc" type="rgb"/>
@@ -179,7 +179,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonPsicologia">
+        <Component class="javax.swing.JButton" name="btnPsicologia">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="cc" type="rgb"/>
@@ -196,7 +196,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonHumor">
+        <Component class="javax.swing.JButton" name="btnHumor">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="cc" type="rgb"/>
@@ -213,7 +213,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonDidatico">
+        <Component class="javax.swing.JButton" name="btnDidatico">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="cc" type="rgb"/>
@@ -230,7 +230,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton8">
+        <Component class="javax.swing.JButton" name="btnVoltar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="cc" type="rgb"/>
@@ -247,7 +247,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVoltarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

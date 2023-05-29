@@ -8,12 +8,12 @@ package view;
  *
  * @author luis.santos6
  */
-public class cadastroLivro extends javax.swing.JFrame {
+public class CadastroLivro extends javax.swing.JFrame {
 
     /**
      * Creates new form Projeto
      */
-    public cadastroLivro() {
+    public CadastroLivro() {
         initComponents();
     }
 
@@ -27,79 +27,79 @@ public class cadastroLivro extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelCadastroDoLivro = new javax.swing.JLabel();
-        jLabelTitulo = new javax.swing.JLabel();
-        jTextFieldTitulo = new javax.swing.JTextField();
-        jLabelAutor = new javax.swing.JLabel();
-        jTextFieldAutor = new javax.swing.JTextField();
-        jLabelNumeroDePaginas = new javax.swing.JLabel();
-        jTextFieldNumeroDePaginas = new javax.swing.JTextField();
-        jLabelQuantidade = new javax.swing.JLabel();
-        jTextFieldQuantidade = new javax.swing.JTextField();
-        jLabelImagem = new javax.swing.JLabel();
-        jButtonSalvar = new javax.swing.JButton();
+        labelCadastroDoLivro = new javax.swing.JLabel();
+        labelTitulo = new javax.swing.JLabel();
+        campoTitulo = new javax.swing.JTextField();
+        labelAutor = new javax.swing.JLabel();
+        campoAutor = new javax.swing.JTextField();
+        labelNumPaginas = new javax.swing.JLabel();
+        campoNumPaginas = new javax.swing.JTextField();
+        labelQtd = new javax.swing.JLabel();
+        campoQuantidade = new javax.swing.JTextField();
+        labelImagem = new javax.swing.JLabel();
+        btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
-        jLabelCadastroDoLivro.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabelCadastroDoLivro.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCadastroDoLivro.setText("Cadastro do Livro");
+        labelCadastroDoLivro.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        labelCadastroDoLivro.setForeground(new java.awt.Color(255, 255, 255));
+        labelCadastroDoLivro.setText("Cadastro do Livro");
 
-        jLabelTitulo.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setText("Titulo");
+        labelTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labelTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        labelTitulo.setText("Titulo");
 
-        jTextFieldTitulo.setBackground(new java.awt.Color(204, 51, 255));
-        jTextFieldTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jTextFieldTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldTitulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        campoTitulo.setBackground(new java.awt.Color(204, 51, 255));
+        campoTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        campoTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        campoTitulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabelAutor.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabelAutor.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelAutor.setText("Autor");
+        labelAutor.setBackground(new java.awt.Color(255, 255, 255));
+        labelAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        labelAutor.setForeground(new java.awt.Color(255, 255, 255));
+        labelAutor.setText("Autor");
 
-        jTextFieldAutor.setBackground(new java.awt.Color(204, 51, 255));
-        jTextFieldAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jTextFieldAutor.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldAutor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        campoAutor.setBackground(new java.awt.Color(204, 51, 255));
+        campoAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        campoAutor.setForeground(new java.awt.Color(255, 255, 255));
+        campoAutor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabelNumeroDePaginas.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelNumeroDePaginas.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabelNumeroDePaginas.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelNumeroDePaginas.setText("Numero de Paginas");
+        labelNumPaginas.setBackground(new java.awt.Color(255, 255, 255));
+        labelNumPaginas.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        labelNumPaginas.setForeground(new java.awt.Color(255, 255, 255));
+        labelNumPaginas.setText("Numero de Paginas");
 
-        jTextFieldNumeroDePaginas.setBackground(new java.awt.Color(204, 51, 255));
-        jTextFieldNumeroDePaginas.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jTextFieldNumeroDePaginas.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldNumeroDePaginas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        campoNumPaginas.setBackground(new java.awt.Color(204, 51, 255));
+        campoNumPaginas.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        campoNumPaginas.setForeground(new java.awt.Color(255, 255, 255));
+        campoNumPaginas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabelQuantidade.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelQuantidade.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabelQuantidade.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelQuantidade.setText("Quantidade");
+        labelQtd.setBackground(new java.awt.Color(255, 255, 255));
+        labelQtd.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        labelQtd.setForeground(new java.awt.Color(255, 255, 255));
+        labelQtd.setText("Quantidade");
 
-        jTextFieldQuantidade.setBackground(new java.awt.Color(204, 51, 255));
-        jTextFieldQuantidade.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jTextFieldQuantidade.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldQuantidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        campoQuantidade.setBackground(new java.awt.Color(204, 51, 255));
+        campoQuantidade.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        campoQuantidade.setForeground(new java.awt.Color(255, 255, 255));
+        campoQuantidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabelImagem.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelImagem.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabelImagem.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelImagem.setText("Imagem");
+        labelImagem.setBackground(new java.awt.Color(255, 255, 255));
+        labelImagem.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        labelImagem.setForeground(new java.awt.Color(255, 255, 255));
+        labelImagem.setText("Imagem");
 
-        jButtonSalvar.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonSalvar.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSalvar.setText("Salvar");
-        jButtonSalvar.setBorder(null);
-        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setBackground(new java.awt.Color(204, 153, 255));
+        btnSalvar.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setText("Salvar");
+        btnSalvar.setBorder(null);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalvarActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
             }
         });
 
@@ -110,63 +110,63 @@ public class cadastroLivro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoQuantidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabelImagem)
+                        .addComponent(labelImagem)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldNumeroDePaginas, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(campoTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                            .addComponent(campoAutor, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoNumPaginas, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelTitulo)
+                        .addComponent(labelTitulo)
                         .addGap(163, 163, 163))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelCadastroDoLivro)
+                        .addComponent(labelCadastroDoLivro)
                         .addGap(110, 110, 110))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelAutor)
+                        .addComponent(labelAutor)
                         .addGap(165, 165, 165))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelNumeroDePaginas)
+                        .addComponent(labelNumPaginas)
                         .addGap(114, 114, 114))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelQuantidade)
+                        .addComponent(labelQtd)
                         .addGap(144, 144, 144))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(143, 143, 143)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelCadastroDoLivro)
+                .addComponent(labelCadastroDoLivro)
                 .addGap(56, 56, 56)
-                .addComponent(jLabelTitulo)
+                .addComponent(labelTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabelAutor)
+                .addComponent(labelAutor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabelNumeroDePaginas)
+                .addComponent(labelNumPaginas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldNumeroDePaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoNumPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelQuantidade)
+                .addComponent(labelQtd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabelImagem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
-                .addComponent(jButtonSalvar)
-                .addContainerGap())
+                .addComponent(labelImagem)
+                .addGap(47, 47, 47)
+                .addComponent(btnSalvar)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,9 +185,9 @@ public class cadastroLivro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSalvarActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,14 +206,18 @@ public class cadastroLivro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(cadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(cadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(cadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(cadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -222,23 +226,23 @@ public class cadastroLivro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cadastroLivro().setVisible(true);
+                new CadastroLivro().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JLabel jLabelAutor;
-    private javax.swing.JLabel jLabelCadastroDoLivro;
-    private javax.swing.JLabel jLabelImagem;
-    private javax.swing.JLabel jLabelNumeroDePaginas;
-    private javax.swing.JLabel jLabelQuantidade;
-    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JTextField campoAutor;
+    private javax.swing.JTextField campoNumPaginas;
+    private javax.swing.JTextField campoQuantidade;
+    private javax.swing.JTextField campoTitulo;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextFieldAutor;
-    private javax.swing.JTextField jTextFieldNumeroDePaginas;
-    private javax.swing.JTextField jTextFieldQuantidade;
-    private javax.swing.JTextField jTextFieldTitulo;
+    private javax.swing.JLabel labelAutor;
+    private javax.swing.JLabel labelCadastroDoLivro;
+    private javax.swing.JLabel labelImagem;
+    private javax.swing.JLabel labelNumPaginas;
+    private javax.swing.JLabel labelQtd;
+    private javax.swing.JLabel labelTitulo;
     // End of variables declaration//GEN-END:variables
 }

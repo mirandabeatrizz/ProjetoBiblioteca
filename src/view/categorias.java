@@ -8,12 +8,12 @@ package view;
  *
  * @author luis.santos6
  */
-public class categorias extends javax.swing.JFrame {
+public class Categorias extends javax.swing.JFrame {
 
     /**
      * Creates new form Categorias
      */
-    public categorias() {
+    public Categorias() {
         initComponents();
     }
 
@@ -27,79 +27,79 @@ public class categorias extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelCadastroDoLivro = new javax.swing.JLabel();
-        jButtonRomance = new javax.swing.JButton();
-        jButtonFantasia = new javax.swing.JButton();
-        jButtonTerror = new javax.swing.JButton();
-        jButtonSuspense = new javax.swing.JButton();
-        jButtonPsicologia = new javax.swing.JButton();
-        jButtonHumor = new javax.swing.JButton();
-        jButtonDidatico = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        labelCategorias = new javax.swing.JLabel();
+        btnRomance = new javax.swing.JButton();
+        btnFantasia = new javax.swing.JButton();
+        btnTerror = new javax.swing.JButton();
+        btnSuspense = new javax.swing.JButton();
+        btnPsicologia = new javax.swing.JButton();
+        btnHumor = new javax.swing.JButton();
+        btnDidatico = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
-        jLabelCadastroDoLivro.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabelCadastroDoLivro.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelCadastroDoLivro.setText("Categorias");
+        labelCategorias.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        labelCategorias.setForeground(new java.awt.Color(255, 255, 255));
+        labelCategorias.setText("Categorias");
 
-        jButtonRomance.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonRomance.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButtonRomance.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonRomance.setText("Romance");
-        jButtonRomance.setBorder(null);
+        btnRomance.setBackground(new java.awt.Color(204, 153, 255));
+        btnRomance.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnRomance.setForeground(new java.awt.Color(255, 255, 255));
+        btnRomance.setText("Romance");
+        btnRomance.setBorder(null);
 
-        jButtonFantasia.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonFantasia.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButtonFantasia.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonFantasia.setText("Fantasia");
-        jButtonFantasia.setBorder(null);
-        jButtonFantasia.addActionListener(new java.awt.event.ActionListener() {
+        btnFantasia.setBackground(new java.awt.Color(204, 153, 255));
+        btnFantasia.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnFantasia.setForeground(new java.awt.Color(255, 255, 255));
+        btnFantasia.setText("Fantasia");
+        btnFantasia.setBorder(null);
+        btnFantasia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFantasiaActionPerformed(evt);
+                btnFantasiaActionPerformed(evt);
             }
         });
 
-        jButtonTerror.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonTerror.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButtonTerror.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonTerror.setText("Terror");
-        jButtonTerror.setBorder(null);
+        btnTerror.setBackground(new java.awt.Color(204, 153, 255));
+        btnTerror.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnTerror.setForeground(new java.awt.Color(255, 255, 255));
+        btnTerror.setText("Terror");
+        btnTerror.setBorder(null);
 
-        jButtonSuspense.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonSuspense.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButtonSuspense.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSuspense.setText("Suspense");
-        jButtonSuspense.setBorder(null);
+        btnSuspense.setBackground(new java.awt.Color(204, 153, 255));
+        btnSuspense.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnSuspense.setForeground(new java.awt.Color(255, 255, 255));
+        btnSuspense.setText("Suspense");
+        btnSuspense.setBorder(null);
 
-        jButtonPsicologia.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonPsicologia.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButtonPsicologia.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonPsicologia.setText("Psicológia");
-        jButtonPsicologia.setBorder(null);
+        btnPsicologia.setBackground(new java.awt.Color(204, 153, 255));
+        btnPsicologia.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnPsicologia.setForeground(new java.awt.Color(255, 255, 255));
+        btnPsicologia.setText("Psicológia");
+        btnPsicologia.setBorder(null);
 
-        jButtonHumor.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonHumor.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButtonHumor.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonHumor.setText("Humor");
-        jButtonHumor.setBorder(null);
+        btnHumor.setBackground(new java.awt.Color(204, 153, 255));
+        btnHumor.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnHumor.setForeground(new java.awt.Color(255, 255, 255));
+        btnHumor.setText("Humor");
+        btnHumor.setBorder(null);
 
-        jButtonDidatico.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonDidatico.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButtonDidatico.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonDidatico.setText("Didatico");
-        jButtonDidatico.setBorder(null);
+        btnDidatico.setBackground(new java.awt.Color(204, 153, 255));
+        btnDidatico.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnDidatico.setForeground(new java.awt.Color(255, 255, 255));
+        btnDidatico.setText("Didatico");
+        btnDidatico.setBorder(null);
 
-        jButton8.setBackground(new java.awt.Color(204, 153, 255));
-        jButton8.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("< ");
-        jButton8.setBorder(null);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setBackground(new java.awt.Color(204, 153, 255));
+        btnVoltar.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("< ");
+        btnVoltar.setBorder(null);
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -112,42 +112,42 @@ public class categorias extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonRomance)
-                            .addComponent(jButtonFantasia)
-                            .addComponent(jButtonTerror)
-                            .addComponent(jButtonSuspense)
-                            .addComponent(jButtonPsicologia)
-                            .addComponent(jButtonHumor)
-                            .addComponent(jButtonDidatico)))
+                            .addComponent(btnRomance)
+                            .addComponent(btnFantasia)
+                            .addComponent(btnTerror)
+                            .addComponent(btnSuspense)
+                            .addComponent(btnPsicologia)
+                            .addComponent(btnHumor)
+                            .addComponent(btnDidatico)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(jLabelCadastroDoLivro))
+                        .addComponent(labelCategorias))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton8)))
+                        .addComponent(btnVoltar)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton8)
+                .addComponent(btnVoltar)
                 .addGap(18, 18, 18)
-                .addComponent(jLabelCadastroDoLivro)
+                .addComponent(labelCategorias)
                 .addGap(29, 29, 29)
-                .addComponent(jButtonRomance)
+                .addComponent(btnRomance)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonFantasia)
+                .addComponent(btnFantasia)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonTerror)
+                .addComponent(btnTerror)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonSuspense)
+                .addComponent(btnSuspense)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonPsicologia)
+                .addComponent(btnPsicologia)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonHumor)
+                .addComponent(btnHumor)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonDidatico)
+                .addComponent(btnDidatico)
                 .addGap(50, 50, 50))
         );
 
@@ -165,13 +165,13 @@ public class categorias extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFantasiaActionPerformed
+    private void btnFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFantasiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFantasiaActionPerformed
+    }//GEN-LAST:event_btnFantasiaActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,35 +190,37 @@ public class categorias extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new categorias().setVisible(true);
+                new Categorias().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButtonDidatico;
-    private javax.swing.JButton jButtonFantasia;
-    private javax.swing.JButton jButtonHumor;
-    private javax.swing.JButton jButtonPsicologia;
-    private javax.swing.JButton jButtonRomance;
-    private javax.swing.JButton jButtonSuspense;
-    private javax.swing.JButton jButtonTerror;
-    private javax.swing.JLabel jLabelCadastroDoLivro;
+    private javax.swing.JButton btnDidatico;
+    private javax.swing.JButton btnFantasia;
+    private javax.swing.JButton btnHumor;
+    private javax.swing.JButton btnPsicologia;
+    private javax.swing.JButton btnRomance;
+    private javax.swing.JButton btnSuspense;
+    private javax.swing.JButton btnTerror;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelCategorias;
     // End of variables declaration//GEN-END:variables
 }
