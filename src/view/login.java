@@ -172,12 +172,19 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
-        // TODO add your handling code here:
+     
+        
+        Interface principal = new Interface();
+        principal.setVisible(true);
+        dispose();
+        
+        
+// TODO add your handling code here:
     }//GEN-LAST:event_botaoEntrarActionPerformed
 
     private void botãoCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botãoCadastroActionPerformed
-    CadastroUser CadastroNovo = new CadastroUser();
-    CadastroNovo.setVisible(true);// TODO add your handling code here:
+    CadastroUser cadastroNovo = new CadastroUser();
+    cadastroNovo.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_botãoCadastroActionPerformed
 
     /**

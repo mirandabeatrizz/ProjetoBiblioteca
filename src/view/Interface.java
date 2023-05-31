@@ -149,6 +149,11 @@ public class Interface extends javax.swing.JFrame {
         jButtonMaiss.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jButtonMaiss.setForeground(new java.awt.Color(255, 255, 255));
         jButtonMaiss.setText("+");
+        jButtonMaiss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMaissActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -250,6 +255,12 @@ public class Interface extends javax.swing.JFrame {
      mp.setVisible(true);
      dispose();
     }//GEN-LAST:event_jButtonPerfilActionPerformed
+
+    private void jButtonMaissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMaissActionPerformed
+        CadastroLivro novoLivro = new CadastroLivro();
+         novoLivro.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonMaissActionPerformed
 
     /**
      * @param args the command line arguments
