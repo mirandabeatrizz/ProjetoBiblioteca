@@ -4,12 +4,21 @@
  */
 package view;
 
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
+import banco.ConexaoBanco;
+import model.Livro;
+
 /**
  *
  * @author luis.santos6
  */
 public class CadastroLivro extends javax.swing.JFrame {
-
+ImageIcon imageIcon;
+String caminhoImagem;
     /**
      * Creates new form Projeto
      */
@@ -27,146 +36,179 @@ public class CadastroLivro extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        labelCadastroDoLivro = new javax.swing.JLabel();
-        labelTitulo = new javax.swing.JLabel();
-        campoTitulo = new javax.swing.JTextField();
-        labelAutor = new javax.swing.JLabel();
-        campoAutor = new javax.swing.JTextField();
-        labelNumPaginas = new javax.swing.JLabel();
-        campoNumPaginas = new javax.swing.JTextField();
-        labelQtd = new javax.swing.JLabel();
-        campoQuantidade = new javax.swing.JTextField();
-        labelImagem = new javax.swing.JLabel();
-        btnSalvar = new javax.swing.JButton();
+        jLabelCadastroDoLivro = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jTextFieldTitulo = new javax.swing.JTextField();
+        jLabelAutor = new javax.swing.JLabel();
+        jTextFieldAutor = new javax.swing.JTextField();
+        jLabelNumeroDePaginas = new javax.swing.JLabel();
+        jTextFieldNumeroDePaginas = new javax.swing.JTextField();
+        jLabelQuantidade = new javax.swing.JLabel();
+        jTextFieldQuantidade = new javax.swing.JTextField();
+        jButtonSalvar = new javax.swing.JButton();
+        jButtonImagem = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabelImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        labelCadastroDoLivro.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        labelCadastroDoLivro.setForeground(new java.awt.Color(255, 255, 255));
-        labelCadastroDoLivro.setText("Cadastro do Livro");
+        jLabelCadastroDoLivro.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabelCadastroDoLivro.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCadastroDoLivro.setText("Cadastro do Livro");
 
-        labelTitulo.setBackground(new java.awt.Color(255, 255, 255));
-        labelTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        labelTitulo.setText("Titulo");
+        jLabelTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setText("Titulo");
 
-        campoTitulo.setBackground(new java.awt.Color(204, 51, 255));
-        campoTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        campoTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        campoTitulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextFieldTitulo.setBackground(new java.awt.Color(204, 51, 255));
+        jTextFieldTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jTextFieldTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldTitulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        labelAutor.setBackground(new java.awt.Color(255, 255, 255));
-        labelAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        labelAutor.setForeground(new java.awt.Color(255, 255, 255));
-        labelAutor.setText("Autor");
+        jLabelAutor.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jLabelAutor.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelAutor.setText("Autor");
 
-        campoAutor.setBackground(new java.awt.Color(204, 51, 255));
-        campoAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        campoAutor.setForeground(new java.awt.Color(255, 255, 255));
-        campoAutor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextFieldAutor.setBackground(new java.awt.Color(204, 51, 255));
+        jTextFieldAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jTextFieldAutor.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldAutor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        labelNumPaginas.setBackground(new java.awt.Color(255, 255, 255));
-        labelNumPaginas.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        labelNumPaginas.setForeground(new java.awt.Color(255, 255, 255));
-        labelNumPaginas.setText("Numero de Paginas");
+        jLabelNumeroDePaginas.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelNumeroDePaginas.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jLabelNumeroDePaginas.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelNumeroDePaginas.setText("Numero de Paginas");
 
-        campoNumPaginas.setBackground(new java.awt.Color(204, 51, 255));
-        campoNumPaginas.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        campoNumPaginas.setForeground(new java.awt.Color(255, 255, 255));
-        campoNumPaginas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextFieldNumeroDePaginas.setBackground(new java.awt.Color(204, 51, 255));
+        jTextFieldNumeroDePaginas.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jTextFieldNumeroDePaginas.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldNumeroDePaginas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        labelQtd.setBackground(new java.awt.Color(255, 255, 255));
-        labelQtd.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        labelQtd.setForeground(new java.awt.Color(255, 255, 255));
-        labelQtd.setText("Quantidade");
+        jLabelQuantidade.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelQuantidade.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jLabelQuantidade.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelQuantidade.setText("Quantidade");
 
-        campoQuantidade.setBackground(new java.awt.Color(204, 51, 255));
-        campoQuantidade.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        campoQuantidade.setForeground(new java.awt.Color(255, 255, 255));
-        campoQuantidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextFieldQuantidade.setBackground(new java.awt.Color(204, 51, 255));
+        jTextFieldQuantidade.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jTextFieldQuantidade.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldQuantidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        labelImagem.setBackground(new java.awt.Color(255, 255, 255));
-        labelImagem.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        labelImagem.setForeground(new java.awt.Color(255, 255, 255));
-        labelImagem.setText("Imagem");
-
-        btnSalvar.setBackground(new java.awt.Color(204, 153, 255));
-        btnSalvar.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar.setText("Salvar");
-        btnSalvar.setBorder(null);
-        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvar.setBackground(new java.awt.Color(204, 153, 255));
+        jButtonSalvar.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setBorder(null);
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarActionPerformed(evt);
+                jButtonSalvarActionPerformed(evt);
             }
         });
+
+        jButtonImagem.setBackground(new java.awt.Color(204, 153, 255));
+        jButtonImagem.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButtonImagem.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonImagem.setText("Imagem");
+        jButtonImagem.setBorder(null);
+        jButtonImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImagemActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBackground(new java.awt.Color(204, 51, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 42, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoQuantidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(labelImagem)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(campoTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                            .addComponent(campoAutor, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(campoNumPaginas, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addGap(41, 41, 41))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabelNumeroDePaginas))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(jLabelQuantidade))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextFieldTitulo)
+                                .addComponent(jTextFieldQuantidade)
+                                .addComponent(jTextFieldAutor)
+                                .addComponent(jTextFieldNumeroDePaginas, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabelAutor))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabelTitulo)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelCadastroDoLivro)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelTitulo)
-                        .addGap(163, 163, 163))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelCadastroDoLivro)
-                        .addGap(110, 110, 110))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelAutor)
-                        .addGap(165, 165, 165))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelNumPaginas)
-                        .addGap(114, 114, 114))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelQtd)
-                        .addGap(144, 144, 144))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jButtonSalvar)
+                .addGap(234, 234, 234))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelCadastroDoLivro)
-                .addGap(56, 56, 56)
-                .addComponent(labelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelAutor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelNumPaginas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoNumPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelQtd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelImagem)
-                .addGap(47, 47, 47)
-                .addComponent(btnSalvar)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jLabelCadastroDoLivro)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonImagem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelAutor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelNumeroDePaginas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldNumeroDePaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelQuantidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jButtonSalvar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,17 +219,52 @@ public class CadastroLivro extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvarActionPerformed
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+    Livro livro = new Livro();
+    livro.setTitulo(jTextFieldTitulo.getText());
+    livro.setAutor(jTextFieldAutor.getText());
+    livro.setNumeroPaginas(Integer.valueOf(jTextFieldNumeroDePaginas.getText()));
+    livro.setQuantidade(Integer.valueOf(jTextFieldQuantidade.getText()));
+    livro.setImagem(caminhoImagem);
+        ConexaoBanco BD = new ConexaoBanco();
+        BD.inserir("Livro (cod_livro,nome_livro, autor, nmr_pg, quant_livro, Imagem)",
+                "(" +
+                        "1" + "," +
+                        "\'" + livro.getTitulo()+ "\'" + "," + 
+                        "\'" + livro.getAutor()+ "\'" + "," + 
+                        String.valueOf(livro.getNumeroPaginas()) + "," +  
+                        String.valueOf(livro.getQuantidade()) + "," + 
+                        "\'" + caminhoImagem + "\'" +        
+                    ")");
+        
+        Salvo salvo = new Salvo();
+        salvo.setVisible(true);
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImagemActionPerformed
+    
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().
+                getHomeDirectory());
+        File selectedFile = null;
+        int returnValue = jfc.showOpenDialog(null);
+        // int returnValue = jfc.showSaveDialog(null);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            selectedFile = jfc.getSelectedFile();
+            System.out.println(selectedFile.getAbsolutePath());
+        }
+             imageIcon = new ImageIcon(selectedFile.getAbsolutePath());
+             caminhoImagem = selectedFile.getAbsolutePath();
+           Image image = imageIcon.getImage().getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH);; 
+           imageIcon = new ImageIcon(image);
+           jLabelImagem.setIcon(imageIcon);
+    }//GEN-LAST:event_jButtonImagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,10 +295,6 @@ public class CadastroLivro extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -232,17 +305,19 @@ public class CadastroLivro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSalvar;
-    private javax.swing.JTextField campoAutor;
-    private javax.swing.JTextField campoNumPaginas;
-    private javax.swing.JTextField campoQuantidade;
-    private javax.swing.JTextField campoTitulo;
+    private javax.swing.JButton jButtonImagem;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JLabel jLabelAutor;
+    private javax.swing.JLabel jLabelCadastroDoLivro;
+    private javax.swing.JLabel jLabelImagem;
+    private javax.swing.JLabel jLabelNumeroDePaginas;
+    private javax.swing.JLabel jLabelQuantidade;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelAutor;
-    private javax.swing.JLabel labelCadastroDoLivro;
-    private javax.swing.JLabel labelImagem;
-    private javax.swing.JLabel labelNumPaginas;
-    private javax.swing.JLabel labelQtd;
-    private javax.swing.JLabel labelTitulo;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextFieldAutor;
+    private javax.swing.JTextField jTextFieldNumeroDePaginas;
+    private javax.swing.JTextField jTextFieldQuantidade;
+    private javax.swing.JTextField jTextFieldTitulo;
     // End of variables declaration//GEN-END:variables
 }
