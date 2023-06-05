@@ -4,6 +4,9 @@
  */
 package view;
 
+import banco.ConexaoBanco;
+import model.Usuario;
+
 /**
  *
  * @author adris
@@ -74,9 +77,18 @@ public class CadastroUser extends javax.swing.JFrame {
             }
         });
 
-        campoSenha.setText("jPasswordField1");
+        campoSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoSenhaActionPerformed(evt);
+            }
+        });
 
         botaoSalvar.setText("Salvar");
+        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalvarActionPerformed(evt);
+            }
+        });
 
         labelTxtCadastrar.setText("Cadastrar:");
 
@@ -179,6 +191,34 @@ public class CadastroUser extends javax.swing.JFrame {
     private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNomeActionPerformed
+
+    private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
+    Usuario user = new Usuario();
+       user.setCPF(campoCPF.getText());
+       user.setNome(campoNome.getText());
+       user.setEmail(campoEmail.getText());
+       user.setTelefone(campoTelef.getText());
+       user.setSenha(campoSenha.getText());
+       user.setDataDeNascimento(campoDataNasc.getText());
+       ConexaoBanco BD = new ConexaoBanco();
+       BD.inserir("Usuario (cpf,nome_usuario, email, telefone, senha, data_nasc)",
+                        "(" +
+                        "\'" + user.getCPF()+ "\'" + "," + 
+                        "\'" + user.getNome()+ "\'" + "," + 
+                        "\'" + user.getEmail() + "\'" + "," + 
+                        "\'" + user.getTelefone() + "\'" + "," +  
+                        "\'" + user.getSenha() + "\'" + "," + 
+                        "\'" + user.getDataDeNascimento()+ "\'" +        
+                    ")");
+        
+        Salvo salvo = new Salvo();
+        salvo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void campoSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoSenhaActionPerformed
 
     /**
      * @param args the command line arguments

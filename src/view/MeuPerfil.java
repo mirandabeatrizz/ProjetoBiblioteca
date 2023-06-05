@@ -28,18 +28,12 @@ public class MeuPerfil extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         labelNomeUser = new javax.swing.JLabel();
-        labelMeusLivros = new javax.swing.JLabel();
         btnDados = new javax.swing.JButton();
         labelEmailUser = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
         panelBiblioteca = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
-        labelTitulo = new javax.swing.JLabel();
-        labelAutor = new javax.swing.JLabel();
-        labelQtdPag = new javax.swing.JLabel();
-        labelQtd = new javax.swing.JLabel();
-        btnAdicionar = new javax.swing.JButton();
+        jButtonMLivros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,11 +43,6 @@ public class MeuPerfil extends javax.swing.JFrame {
         labelNomeUser.setForeground(new java.awt.Color(255, 255, 255));
         labelNomeUser.setText("Nome do Usuário");
         labelNomeUser.setMaximumSize(new java.awt.Dimension(834, 698));
-
-        labelMeusLivros.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        labelMeusLivros.setForeground(new java.awt.Color(255, 255, 255));
-        labelMeusLivros.setText("Meus Livros:");
-        labelMeusLivros.setMaximumSize(new java.awt.Dimension(834, 698));
 
         btnDados.setBackground(new java.awt.Color(153, 51, 255));
         btnDados.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -70,13 +59,6 @@ public class MeuPerfil extends javax.swing.JFrame {
         labelEmailUser.setForeground(new java.awt.Color(255, 255, 255));
         labelEmailUser.setText("emailusuario@gmail.com");
         labelEmailUser.setMaximumSize(new java.awt.Dimension(834, 698));
-
-        jPasswordField2.setBackground(new java.awt.Color(153, 51, 255));
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
-            }
-        });
 
         panelBiblioteca.setBackground(new java.awt.Color(153, 51, 255));
 
@@ -117,25 +99,13 @@ public class MeuPerfil extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        labelTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        labelTitulo.setText("Título:");
-
-        labelAutor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        labelAutor.setText("Autor:");
-
-        labelQtdPag.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        labelQtdPag.setText("Número de páginas:");
-
-        labelQtd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        labelQtd.setText("Quantidade:");
-
-        btnAdicionar.setBackground(new java.awt.Color(153, 51, 255));
-        btnAdicionar.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        btnAdicionar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdicionar.setText("+");
-        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMLivros.setBackground(new java.awt.Color(153, 51, 255));
+        jButtonMLivros.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonMLivros.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonMLivros.setText("Meus Livros");
+        jButtonMLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarActionPerformed(evt);
+                jButtonMLivrosActionPerformed(evt);
             }
         });
 
@@ -146,25 +116,14 @@ public class MeuPerfil extends javax.swing.JFrame {
             .addComponent(panelBiblioteca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(115, 115, 115)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPasswordField2)
-                    .addComponent(labelNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEmailUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDados, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelMeusLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTitulo)
-                            .addComponent(labelAutor)
-                            .addComponent(labelQtdPag)
-                            .addComponent(labelQtd))
-                        .addContainerGap(103, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                        .addComponent(btnDados, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(jButtonMLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,43 +134,32 @@ public class MeuPerfil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDados, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(labelMeusLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelTitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelAutor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelQtdPag)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDados, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonMLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadosActionPerformed
-        // TODO add your handling code here:
+        CadastroUser cadUser = new CadastroUser();
+        cadUser.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnDadosActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -221,15 +169,11 @@ public class MeuPerfil extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
-
-    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-      CadastroLivro novoLivro = new CadastroLivro();
-      novoLivro.setVisible(true);
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnAdicionarActionPerformed
+    private void jButtonMLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMLivrosActionPerformed
+        MeusLivros meusL = new MeusLivros();
+        meusL.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonMLivrosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,19 +211,13 @@ public class MeuPerfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnDados;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JButton jButtonMLivros;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JLabel labelAutor;
     private javax.swing.JLabel labelEmailUser;
-    private javax.swing.JLabel labelMeusLivros;
     private javax.swing.JLabel labelNomeUser;
-    private javax.swing.JLabel labelQtd;
-    private javax.swing.JLabel labelQtdPag;
-    private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelBiblioteca;
     // End of variables declaration//GEN-END:variables
 }
