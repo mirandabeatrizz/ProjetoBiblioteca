@@ -15,15 +15,19 @@ public class Usuario {
     private String Telefone;
     private String Senha;
     private String DataDeNascimento;
+
+
+    public Usuario() {
+    }
     
-public void Usuario(String CPF, String Nome, String Email, String Telefone, String Senha, String DataDeNascimento){
-    this.CPF = CPF;
-    this.Nome = Nome;
-    this.Email = Email;
-    this.Telefone = Telefone;
-    this.Senha = Senha;
-    this.DataDeNascimento= DataDeNascimento;
-}
+    public Usuario(String CPF, String Nome, String Email, String Telefone, String Senha, String DataDeNascimento){
+      this.CPF = CPF;
+      this.Nome = Nome;
+      this.Email = Email;
+      this.Telefone = Telefone;
+      this.Senha = Senha;
+      this.DataDeNascimento= DataDeNascimento;
+    }
         public String getCPF() {
          return CPF;
         }

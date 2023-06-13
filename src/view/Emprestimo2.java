@@ -5,6 +5,9 @@
 package view;
 
 import banco.ConexaoBanco;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.EmprestimoModel;
 import model.Endereco;
 
@@ -171,8 +174,12 @@ public class Emprestimo2 extends javax.swing.JFrame {
                     ")");
        
       
-        Interface inter = new Interface();
-        inter.setVisible(true);
+         try {
+            Interface principal = new Interface();
+        principal.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Salvo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
     }//GEN-LAST:event_btnSalvar1ActionPerformed
 

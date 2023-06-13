@@ -4,18 +4,58 @@
  */
 package view;
 
+import banco.ConexaoBanco;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import model.Usuario;
+
 /**
  *
  * @author marin
  */
 public class MeuPerfil extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MeuPerfil
-     */
-    public MeuPerfil() {
+    List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+    Usuario user;
+    
+    public MeuPerfil() throws SQLException  {
         initComponents();
+       exibirInfo();
+       this.user = user;
+    }   
+    
+    public void exibirInfo() throws SQLException {
+        ConexaoBanco BD = new ConexaoBanco();
+        listaUsuarios = new ArrayList<Usuario>();
+        ResultSet rs = BD.buscarDados("usuario");
+        while (rs.next()) {
+            Usuario user = new Usuario();
+            user.setCPF(rs.getString("cpf"));
+            user.setNome(rs.getString("nome_usuario"));
+            user.setEmail(rs.getString("email"));
+            user.setSenha(rs.getString("senha"));
+            user.setTelefone(rs.getString("telefone"));
+            user.setDataDeNascimento(rs.getString("data_nasc"));
+            listaUsuarios.add(user);
+        }
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            labelNomeUser.setText(listaUsuarios.get(i).getNome());
+            labelEmailUser.setText(listaUsuarios.get(i).getEmail());
+            tblDados.setValueAt(listaUsuarios.get(i).getCPF(), i, 0);
+            tblDados.setValueAt(listaUsuarios.get(i).getNome(), i, 1);
+            tblDados.setValueAt(listaUsuarios.get(i).getEmail(), i, 2);
+            tblDados.setValueAt(listaUsuarios.get(i).getSenha(), i, 3);
+            tblDados.setValueAt(listaUsuarios.get(i).getTelefone(), i, 4);
+            tblDados.setValueAt(listaUsuarios.get(i).getDataDeNascimento(), i, 5);
+        }
+        
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,12 +68,16 @@ public class MeuPerfil extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         labelNomeUser = new javax.swing.JLabel();
-        btnDados = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
         labelEmailUser = new javax.swing.JLabel();
         panelBiblioteca = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
         jButtonMLivros = new javax.swing.JButton();
+        jLabelMDados = new javax.swing.JLabel();
+        btnFechar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblDados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,14 +88,14 @@ public class MeuPerfil extends javax.swing.JFrame {
         labelNomeUser.setText("Nome do Usuário");
         labelNomeUser.setMaximumSize(new java.awt.Dimension(834, 698));
 
-        btnDados.setBackground(new java.awt.Color(153, 51, 255));
-        btnDados.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnDados.setForeground(new java.awt.Color(255, 255, 255));
-        btnDados.setText("Meus Dados");
-        btnDados.setBorder(null);
-        btnDados.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setBackground(new java.awt.Color(153, 0, 255));
+        btnAlterar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterar.setText("Alterar Dados");
+        btnAlterar.setBorder(null);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDadosActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
 
@@ -60,7 +104,7 @@ public class MeuPerfil extends javax.swing.JFrame {
         labelEmailUser.setText("emailusuario@gmail.com");
         labelEmailUser.setMaximumSize(new java.awt.Dimension(834, 698));
 
-        panelBiblioteca.setBackground(new java.awt.Color(153, 51, 255));
+        panelBiblioteca.setBackground(new java.awt.Color(153, 0, 255));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -78,29 +122,8 @@ public class MeuPerfil extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelBibliotecaLayout = new javax.swing.GroupLayout(panelBiblioteca);
-        panelBiblioteca.setLayout(panelBibliotecaLayout);
-        panelBibliotecaLayout.setHorizontalGroup(
-            panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBibliotecaLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(btnVoltar)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelBibliotecaLayout.setVerticalGroup(
-            panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBibliotecaLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnVoltar)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
-        );
-
-        jButtonMLivros.setBackground(new java.awt.Color(153, 51, 255));
-        jButtonMLivros.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonMLivros.setBackground(new java.awt.Color(153, 0, 255));
+        jButtonMLivros.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonMLivros.setForeground(new java.awt.Color(255, 255, 255));
         jButtonMLivros.setText("Meus Livros");
         jButtonMLivros.addActionListener(new java.awt.event.ActionListener() {
@@ -109,44 +132,155 @@ public class MeuPerfil extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout panelBibliotecaLayout = new javax.swing.GroupLayout(panelBiblioteca);
+        panelBiblioteca.setLayout(panelBibliotecaLayout);
+        panelBibliotecaLayout.setHorizontalGroup(
+            panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBibliotecaLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(btnVoltar)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonMLivros)
+                .addGap(39, 39, 39))
+        );
+        panelBibliotecaLayout.setVerticalGroup(
+            panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBibliotecaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonMLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabelMDados.setBackground(new java.awt.Color(153, 102, 255));
+        jLabelMDados.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabelMDados.setText("Meus Dados:");
+
+        btnFechar.setBackground(new java.awt.Color(153, 102, 255));
+        btnFechar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnFechar.setForeground(new java.awt.Color(51, 0, 102));
+        btnFechar.setText("Fechar");
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFecharActionPerformed(evt);
+            }
+        });
+
+        tblDados.setBackground(new java.awt.Color(153, 0, 255));
+        tblDados.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        tblDados.setForeground(new java.awt.Color(255, 255, 255));
+        tblDados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "CPF", "Nome", "E-mail", "Senha", "Telefone", "Data de Nascimento"
+            }
+        ));
+        tblDados.setAutoscrolls(false);
+        tblDados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblDados.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDados.setSelectionBackground(new java.awt.Color(255, 102, 255));
+        tblDados.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setViewportView(tblDados);
+        tblDados.getAccessibleContext().setAccessibleParent(null);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelBiblioteca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnFechar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnDados, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
-                        .addComponent(jButtonMLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelMDados)
+                            .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(610, 610, 610))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(panelBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(42, 42, 42)
                 .addComponent(labelNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDados, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonMLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jLabelMDados)
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,24 +290,46 @@ public class MeuPerfil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadosActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        Usuario user = new Usuario();
+        user.setCPF(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 0).toString());
+        user.setNome(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 1).toString());
+        user.setEmail(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 2).toString());
+        user.setSenha(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 3).toString());
+        user.setTelefone(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 4).toString());
+        user.setDataDeNascimento(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 5).toString());
+        
         CadastroUser cadUser = new CadastroUser();
         cadUser.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnDadosActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        Interface principal = new Interface();
+        try {
+            Interface principal = new Interface();
         principal.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(MeuPerfil.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void jButtonMLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMLivrosActionPerformed
-       // MeusLivros meusL = new MeusLivros();
-        //meusL.setVisible(true);
+        
+        try {
+            MeusLivros meusL = new MeusLivros();
+             meusL.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(MeuPerfil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         dispose();
     }//GEN-LAST:event_jButtonMLivrosActionPerformed
+
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFecharActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,19 +361,27 @@ public class MeuPerfil extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MeuPerfil().setVisible(true);
+                try {
+                    new MeuPerfil().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MeuPerfil.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDados;
+    private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JButton jButtonMLivros;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelMDados;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelEmailUser;
     private javax.swing.JLabel labelNomeUser;
     private javax.swing.JPanel panelBiblioteca;
+    private javax.swing.JTable tblDados;
     // End of variables declaration//GEN-END:variables
 }

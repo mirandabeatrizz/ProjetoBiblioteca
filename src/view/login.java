@@ -4,6 +4,11 @@
  */
 package view;
 
+import banco.ConexaoBanco;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author marin
@@ -178,10 +183,15 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
-     
-        
-        Interface principal = new Interface();
-        principal.setVisible(true);
+      ConexaoBanco CB = new ConexaoBanco();
+        CB.buscarDados("usuario(email, senha)");
+ 
+        try {
+            Interface inter = new Interface();
+            inter.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
         
         
