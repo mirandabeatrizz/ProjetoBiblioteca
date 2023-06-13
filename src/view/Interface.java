@@ -271,7 +271,7 @@ public class Interface extends javax.swing.JFrame {
     private void jButtonMaissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMaissActionPerformed
         CadastroLivro novoLivro = new CadastroLivro();
          novoLivro.setVisible(true);
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jButtonMaissActionPerformed
 
     private void jButtonPegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPegarActionPerformed

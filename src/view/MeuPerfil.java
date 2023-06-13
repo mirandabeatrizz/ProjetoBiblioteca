@@ -170,8 +170,8 @@ public class MeuPerfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void jButtonMLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMLivrosActionPerformed
-        MeusLivros meusL = new MeusLivros();
-        meusL.setVisible(true);
+       // MeusLivros meusL = new MeusLivros();
+        //meusL.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonMLivrosActionPerformed
 

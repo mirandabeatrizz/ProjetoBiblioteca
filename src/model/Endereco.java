@@ -14,18 +14,29 @@ public class Endereco {
     private String cidade;
     private String bairro;
     private String cep;
+    private String rua;
     
     public Endereco(){
         
     }
     
-    public Endereco (String estado, String cidade, String bairro, String cep){
+    public Endereco (String estado, String cidade, String bairro, String cep, String rua){
         this.estado = estado;
         this.cidade = cidade;
         this.bairro = bairro;
         this.cep = cep;
+        this.rua = rua;
     }
 
+    public String getRua() {
+        return rua;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
+    
     public String getEstado() {
         return estado;
     }

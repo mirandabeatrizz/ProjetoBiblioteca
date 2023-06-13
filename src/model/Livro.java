@@ -11,15 +11,45 @@ package model;
 public class Livro {
     private String Titulo;
     private String Autor;
-    private int NumeroPaginas;
-    private int Quantidade;
+    private String NumeroPaginas;
+    private String Quantidade;
+    private String Categoria;
     private String imagem;
-
+    private int cod_livro;
     
     public Livro(){
-    
-}
+        
+    }
 
+    
+     public Livro(String Titulo,String Autor, String NumeroPaginas,String Quantidade, String Categoria){
+        
+        this.Titulo = Titulo;
+        this.Autor = Autor;
+        this.NumeroPaginas = NumeroPaginas;
+        this.Quantidade = Quantidade;
+        this.Categoria = Categoria;
+    }
+    
+    
+    public int getCod_livro() {
+        return cod_livro;
+    }
+
+    public void setCod_livro(int cod_livro) {
+        this.cod_livro = cod_livro;
+    }
+
+    
+    
+    public String getCategoria() {
+        return Categoria;
+    }
+
+    public void setCategoria(String Categoria) {
+        this.Categoria = Categoria;
+    }
+    
     public String getTitulo() {
         return Titulo;
     }
@@ -36,19 +66,19 @@ public class Livro {
         this.Autor = Autor;
     }
 
-    public int getNumeroPaginas() {
+    public String getNumeroPaginas() {
         return NumeroPaginas;
     }
 
-    public void setNumeroPaginas(int NumeroPaginas) {
+    public void setNumeroPaginas(String NumeroPaginas) {
         this.NumeroPaginas = NumeroPaginas;
     }
 
-    public int getQuantidade() {
+    public String getQuantidade() {
         return Quantidade;
     }
 
-    public void setQuantidade(int Quantidade) {
+    public void setQuantidade(String Quantidade) {
         this.Quantidade = Quantidade;
     }
 

@@ -4,17 +4,65 @@
  */
 package view;
 
+import banco.ConexaoBanco;
+import java.lang.System.Logger;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import model.Livro;
+
 /**
  *
  * @author luis.santos6
  */
 public class MeusLivros extends javax.swing.JFrame {
-
+ List<Livro> listaLivros = new ArrayList<Livro>();
     /**
      * Creates new form MeusLivros
      */
-    public MeusLivros() {
+    public MeusLivros() throws SQLException {
         initComponents();
+        exibirLivros();
+    }
+    public void exibirLivros() throws SQLException {
+        ConexaoBanco cDB = new ConexaoBanco();
+        listaLivros = new ArrayList<Livro>();
+        ResultSet rs = cDB.buscarDados("Livro");
+        while (rs.next()) {
+            Livro ctn = new Livro();
+            ctn.setTitulo(rs.getString("nome_livro"));
+            ctn.setAutor(rs.getString("autor"));
+            ctn.setNumeroPaginas(rs.getString("nmr_pg"));
+            ctn.setQuantidade(rs.getString("quant_livro"));
+            ctn.setCategoria(rs.getString("Categoria"));
+            ctn.setImagem(rs.getString("imagem"));                                 
+            listaLivros.add(ctn);
+        }
+        for (int i = 0; i < listaLivros.size(); i++) {
+            tblLivros.setValueAt(listaLivros.get(i).getTitulo(), i, 0);
+            tblLivros.setValueAt(listaLivros.get(i).getAutor(), i, 1);
+            tblLivros.setValueAt(listaLivros.get(i).getNumeroPaginas(), i, 2);
+            tblLivros.setValueAt(listaLivros.get(i).getQuantidade(), i, 3);
+            tblLivros.setValueAt(listaLivros.get(i).getCategoria(), i, 4);
+            tblLivros.setValueAt(listaLivros.get(i).getImagem(), i, 5);
+           
+            
+        }
+         
+        
+    }
+    
+    private void limparTabela() {
+            for (int i = 0; i < listaLivros.size(); i++) {
+            tblLivros.setValueAt("", i, 0);
+            tblLivros.setValueAt("", i, 1);
+            tblLivros.setValueAt("", i, 2);
+            tblLivros.setValueAt("", i, 3);
+            tblLivros.setValueAt("", i, 4);
+           
+            }
     }
 
     /**
@@ -26,10 +74,126 @@ public class MeusLivros extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblLivros = new javax.swing.JTable();
+        jButtonAlterar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 153, 255));
+
+        tblLivros.setBackground(new java.awt.Color(204, 51, 255));
+        tblLivros.setForeground(new java.awt.Color(255, 255, 255));
+        tblLivros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Titulo", "Autor", "Numero de paginas", "Quantidade", "Categoria", "Imagem"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblLivros.setGridColor(new java.awt.Color(255, 255, 255));
+        tblLivros.setSelectionBackground(new java.awt.Color(255, 102, 255));
+        tblLivros.setSelectionForeground(new java.awt.Color(255, 255, 0));
+        jScrollPane3.setViewportView(tblLivros);
+        if (tblLivros.getColumnModel().getColumnCount() > 0) {
+            tblLivros.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jButtonAlterar.setBackground(new java.awt.Color(204, 51, 255));
+        jButtonAlterar.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jButtonAlterar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
+
+        jButtonExcluir.setBackground(new java.awt.Color(204, 51, 255));
+        jButtonExcluir.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(204, 51, 255));
+        jButton3.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Cadastro");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(204, 51, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("<");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -37,21 +201,51 @@ public class MeusLivros extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonAlterar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonExcluir)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAlterar)
+                    .addComponent(jButtonExcluir)
+                    .addComponent(jButton3))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jButton1)
-                .addContainerGap(363, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jButton1)
-                .addContainerGap(263, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -62,6 +256,37 @@ public class MeusLivros extends javax.swing.JFrame {
         inter.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        Livro li = new Livro();
+        li.setTitulo(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 0).toString());
+        li.setAutor(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 1).toString());
+        li.setNumeroPaginas(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 2).toString());
+        li.setQuantidade(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 3).toString());
+        li.setCategoria(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 4).toString());
+        li.setImagem(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 5).toString());
+        CadastroLivro cv = new CadastroLivro(li);
+        cv.setVisible(true);
+       
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        ConexaoBanco cDB = new ConexaoBanco();
+        String Titulo = tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 0).toString();
+        cDB.excluir("Livro","where nome_livro = " + "\'" + Titulo + "\'");
+        try {
+            limparTabela();
+            exibirLivros();
+        } catch (SQLException ex) {
+             java.util.logging.Logger.getLogger(MeusLivros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        CadastroLivro ct = new CadastroLivro();
+        ct.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -93,12 +318,22 @@ public class MeusLivros extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MeusLivros().setVisible(true);
+                try {
+                    new MeusLivros().setVisible(true);
+                } catch (SQLException ex) {
+                    java.util.logging.Logger.getLogger(MeusLivros.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tblLivros;
     // End of variables declaration//GEN-END:variables
 }
