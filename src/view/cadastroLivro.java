@@ -14,13 +14,14 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Livro;
+import model.Usuario;
 
 /**
  *
  * @author luis.santos6
  */
 public class CadastroLivro extends javax.swing.JFrame {
-
+    Usuario user;
     ImageIcon imageIcon;
     String caminhoImagem;
     Livro li;
@@ -32,9 +33,16 @@ public class CadastroLivro extends javax.swing.JFrame {
     public CadastroLivro() {
         initComponents();
     }
+    
+    public CadastroLivro (Usuario user){
+        initComponents();
+        this.user = user;
+        
+    }
 
     public CadastroLivro(Livro li) {
         initComponents();
+      
         this.li = li;
         Titulo = this.li.getTitulo();
         jTextFieldTitulo.setText(this.li.getTitulo());
@@ -44,7 +52,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         jTextFieldCategoria.setText(this.li.getCategoria());
         caminhoImagem = this.li.getImagem();
         imageIcon = new ImageIcon(caminhoImagem);
-        Image image = imageIcon.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);;
+        Image image = imageIcon.getImage().getScaledInstance(159,191,java.awt.Image.SCALE_SMOOTH);;
         imageIcon = new ImageIcon(image);
         jLabelImagem.setIcon(imageIcon);
     }
@@ -62,6 +70,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabelCadastroDoLivro = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
         jTextFieldTitulo = new javax.swing.JTextField();
+
         jLabelAutor = new javax.swing.JLabel();
         jTextFieldAutor = new javax.swing.JTextField();
         jLabelNumeroDePaginas = new javax.swing.JLabel();
@@ -69,13 +78,14 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabelQuantidade = new javax.swing.JLabel();
         jTextFieldQuantidade = new javax.swing.JTextField();
         jButtonSalvar = new javax.swing.JButton();
-        jButtonImagem = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelImagem = new javax.swing.JLabel();
         jLabelCategorias = new javax.swing.JLabel();
         jTextFieldCategoria = new javax.swing.JTextField();
+        jButtonImagem = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -89,19 +99,24 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setText("Titulo");
 
-        jTextFieldTitulo.setBackground(new java.awt.Color(204, 51, 255));
+        jTextFieldTitulo.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jTextFieldTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldTitulo.setForeground(new java.awt.Color(51, 51, 51));
         jTextFieldTitulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTextFieldTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTituloActionPerformed(evt);
+            }
+        });
 
         jLabelAutor.setBackground(new java.awt.Color(255, 255, 255));
         jLabelAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jLabelAutor.setForeground(new java.awt.Color(255, 255, 255));
         jLabelAutor.setText("Autor");
 
-        jTextFieldAutor.setBackground(new java.awt.Color(204, 51, 255));
+        jTextFieldAutor.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldAutor.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jTextFieldAutor.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldAutor.setForeground(new java.awt.Color(51, 51, 51));
         jTextFieldAutor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabelNumeroDePaginas.setBackground(new java.awt.Color(255, 255, 255));
@@ -109,9 +124,9 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabelNumeroDePaginas.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNumeroDePaginas.setText("Numero de Paginas");
 
-        jTextFieldNumeroDePaginas.setBackground(new java.awt.Color(204, 51, 255));
+        jTextFieldNumeroDePaginas.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldNumeroDePaginas.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jTextFieldNumeroDePaginas.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldNumeroDePaginas.setForeground(new java.awt.Color(51, 51, 51));
         jTextFieldNumeroDePaginas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabelQuantidade.setBackground(new java.awt.Color(255, 255, 255));
@@ -119,12 +134,12 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabelQuantidade.setForeground(new java.awt.Color(255, 255, 255));
         jLabelQuantidade.setText("Quantidade");
 
-        jTextFieldQuantidade.setBackground(new java.awt.Color(204, 51, 255));
+        jTextFieldQuantidade.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldQuantidade.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jTextFieldQuantidade.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldQuantidade.setForeground(new java.awt.Color(51, 51, 51));
         jTextFieldQuantidade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButtonSalvar.setBackground(new java.awt.Color(204, 153, 255));
+        jButtonSalvar.setBackground(new java.awt.Color(153, 0, 255));
         jButtonSalvar.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvar.setText("Salvar");
@@ -135,18 +150,9 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
-        jButtonImagem.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonImagem.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jButtonImagem.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonImagem.setText("Imagem");
-        jButtonImagem.setBorder(null);
-        jButtonImagem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonImagemActionPerformed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(204, 102, 255));
 
-        jPanel2.setBackground(new java.awt.Color(204, 51, 255));
+        jLabelImagem.setForeground(new java.awt.Color(204, 102, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,14 +160,12 @@ public class CadastroLivro extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabelImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
         );
 
         jLabelCategorias.setBackground(new java.awt.Color(255, 255, 255));
@@ -169,54 +173,75 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabelCategorias.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCategorias.setText("Categorias");
 
-        jTextFieldCategoria.setBackground(new java.awt.Color(204, 51, 255));
+        jTextFieldCategoria.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldCategoria.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jTextFieldCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldCategoria.setForeground(new java.awt.Color(51, 51, 51));
         jTextFieldCategoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jButtonImagem.setBackground(new java.awt.Color(153, 0, 255));
+        jButtonImagem.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jButtonImagem.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonImagem.setText("Carregar imagem");
+        jButtonImagem.setBorder(null);
+        jButtonImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImagemActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Imagem");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jLabelAutor))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jLabelTitulo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addComponent(jLabelNumeroDePaginas))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(jLabelQuantidade))
-                            .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldNumeroDePaginas, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCategoria))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelCadastroDoLivro)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(jLabelCategorias)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jButtonSalvar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(147, 147, 147)
+                                .addComponent(jLabelAutor))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(147, 147, 147)
+                                .addComponent(jLabelTitulo))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(76, 76, 76)
+                                        .addComponent(jLabelNumeroDePaginas))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(104, 104, 104)
+                                        .addComponent(jLabelQuantidade))
+                                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextFieldAutor, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextFieldNumeroDePaginas, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldCategoria)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jLabelCategorias)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 6, Short.MAX_VALUE)))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(82, 82, 82))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,13 +249,11 @@ public class CadastroLivro extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabelCadastroDoLivro)
                 .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTitulo)
+                    .addComponent(jLabel1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonImagem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -243,15 +266,20 @@ public class CadastroLivro extends javax.swing.JFrame {
                         .addComponent(jTextFieldNumeroDePaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelQuantidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelCategorias)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabelCategorias)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(jButtonSalvar)
-                .addGap(30, 30, 30))
+                        .addComponent(jButtonImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -262,10 +290,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -275,14 +300,15 @@ public class CadastroLivro extends javax.swing.JFrame {
         ConexaoBanco BD = new ConexaoBanco();
         if (li == null) {
             li = new Livro(jTextFieldTitulo.getText(), jTextFieldAutor.getText(), jTextFieldNumeroDePaginas.getText(), jTextFieldQuantidade.getText(), jTextFieldCategoria.getText());
-            BD.inserir("livro(nome_livro,autor, nmr_pg, quant_livro, imagem, Categoria)",
+            BD.inserir("livro(nome_livro,autor, nmr_pg, quant_livro, imagem, Categoria,usuario_idusuario)",
                     "("
                     + "\'" + li.getTitulo() + "\'" + ","
                     + "\'" + li.getAutor() + "\'" + ","
                     + "\'" + li.getNumeroPaginas() + "\'" + ","
                     + "\'" + li.getQuantidade() + "\'" + ","
                     + "\'" + caminhoImagem + "\'" + ","
-                    + "\'" + li.getCategoria() + "\'"
+                    + "\'" + li.getCategoria() + "\'" + ","
+                    + user.getId()
                     + ")");
 
         } else {
@@ -299,13 +325,13 @@ public class CadastroLivro extends javax.swing.JFrame {
             li = null;
 
         }
-
-        try {
-            MeusLivros rv = new MeusLivros();
+        this.dispose();
+        /*try {
+            MeusLivros rv = new MeusLivros(user);
             rv.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -324,10 +350,14 @@ public class CadastroLivro extends javax.swing.JFrame {
         }
         imageIcon = new ImageIcon(selectedFile.getAbsolutePath());
         caminhoImagem = selectedFile.getAbsolutePath();
-        Image image = imageIcon.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);;
+        Image image = imageIcon.getImage().getScaledInstance(159, 191, java.awt.Image.SCALE_SMOOTH);;
         imageIcon = new ImageIcon(image);
         jLabelImagem.setIcon(imageIcon);
     }//GEN-LAST:event_jButtonImagemActionPerformed
+
+    private void jTextFieldTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTituloActionPerformed
+     // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTituloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,6 +400,7 @@ public class CadastroLivro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonImagem;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAutor;
     private javax.swing.JLabel jLabelCadastroDoLivro;
     private javax.swing.JLabel jLabelCategorias;

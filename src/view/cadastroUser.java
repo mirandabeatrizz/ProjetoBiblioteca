@@ -5,6 +5,9 @@
 package view;
 
 import banco.ConexaoBanco;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Usuario;
 
 /**
@@ -12,12 +15,38 @@ import model.Usuario;
  * @author adris
  */
 public class CadastroUser extends javax.swing.JFrame {
-
+    Usuario user;
+    //Usuario us;
+    String CPF;
     /**
      * Creates new form cadastroUser
      */
     public CadastroUser() {
         initComponents();
+    }
+
+   /* public CadastroUser(Usuario user) {
+        initComponents();
+        this.user = user;
+        CPF = this.user.getCPF();
+        jTextFieldCPF.setText(this.user.getCPF());
+        jTextFieldNome.setText(this.user.getNome());
+        jTextFieldEmail.setText(this.user.getEmail());
+        jTextFieldSenha.setText(this.user.getSenha());
+        jTextFieldTel.setText(this.user.getTelefone());
+        jTextFieldDataN.setText(this.user.getDataDeNascimento());
+
+    }*/
+    
+    public CadastroUser (Usuario user) {
+        initComponents();
+        this.user = user;
+        jTextFieldCPF.setText(this.user.getCPF());
+        jTextFieldNome.setText(this.user.getNome());
+        jTextFieldEmail.setText(this.user.getEmail());
+        jTextFieldSenha.setText(this.user.getSenha());
+        jTextFieldTel.setText(this.user.getTelefone());
+        jTextFieldDataN.setText(this.user.getDataDeNascimento());
     }
 
     /**
@@ -30,59 +59,86 @@ public class CadastroUser extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        labelCPF = new javax.swing.JLabel();
-        labelNome = new javax.swing.JLabel();
         labelEmail = new javax.swing.JLabel();
         labelTelef = new javax.swing.JLabel();
         labelDataNasc = new javax.swing.JLabel();
         labelSenha = new javax.swing.JLabel();
-        campoEmail = new javax.swing.JTextField();
-        campoCPF = new javax.swing.JTextField();
-        campoNome = new javax.swing.JTextField();
-        campoSenha = new javax.swing.JPasswordField();
-        campoTelef = new javax.swing.JTextField();
-        campoDataNasc = new javax.swing.JTextField();
+        jTextFieldEmail = new javax.swing.JTextField();
+        jTextFieldCPF = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter CPF= new javax.swing.text.MaskFormatter("###.###.###-##");
+            jTextFieldCPF = new javax.swing.JFormattedTextField(CPF);
+        }
+        catch (Exception e){
+        }
+        jTextFieldNome = new javax.swing.JTextField();
+        jTextFieldSenha = new javax.swing.JPasswordField();
+        jTextFieldTel = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter CPF= new javax.swing.text.MaskFormatter("(##) #####-####");
+            jTextFieldTel = new javax.swing.JFormattedTextField(CPF);
+        }
+        catch (Exception e){
+        }
+        jTextFieldDataN = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter CPF= new javax.swing.text.MaskFormatter("##/##/####");
+            jTextFieldDataN = new javax.swing.JFormattedTextField(CPF);
+        }
+        catch (Exception e){
+        }
         botaoSalvar = new javax.swing.JButton();
         labelTxtCadastrar = new javax.swing.JLabel();
+        labelcpf = new javax.swing.JLabel();
+        label_nome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelCPF.setText("CPF:");
+        jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
-        labelNome.setText("Nome Completo:");
+        labelEmail.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        labelEmail.setForeground(new java.awt.Color(255, 255, 255));
+        labelEmail.setText("E-mail:");
 
-        labelEmail.setText("Email:");
-
+        labelTelef.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        labelTelef.setForeground(new java.awt.Color(255, 255, 255));
         labelTelef.setText("Telefone:");
 
+        labelDataNasc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        labelDataNasc.setForeground(new java.awt.Color(255, 255, 255));
         labelDataNasc.setText("Data de Nascimento:");
 
+        labelSenha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        labelSenha.setForeground(new java.awt.Color(255, 255, 255));
         labelSenha.setText("Senha:");
 
-        campoEmail.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoEmailActionPerformed(evt);
+                jTextFieldEmailActionPerformed(evt);
             }
         });
 
-        campoCPF.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCPFActionPerformed(evt);
+                jTextFieldCPFActionPerformed(evt);
             }
         });
 
-        campoNome.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeActionPerformed(evt);
+                jTextFieldNomeActionPerformed(evt);
             }
         });
 
-        campoSenha.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoSenhaActionPerformed(evt);
+                jTextFieldSenhaActionPerformed(evt);
             }
         });
 
+        botaoSalvar.setBackground(new java.awt.Color(153, 0, 255));
+        botaoSalvar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        botaoSalvar.setForeground(new java.awt.Color(255, 255, 255));
         botaoSalvar.setText("Salvar");
         botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +146,17 @@ public class CadastroUser extends javax.swing.JFrame {
             }
         });
 
-        labelTxtCadastrar.setText("Cadastrar:");
+        labelTxtCadastrar.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        labelTxtCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        labelTxtCadastrar.setText("Cadastro");
+
+        labelcpf.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        labelcpf.setForeground(new java.awt.Color(255, 255, 255));
+        labelcpf.setText("CPF:");
+
+        label_nome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        label_nome.setForeground(new java.awt.Color(255, 255, 255));
+        label_nome.setText("Nome Completo:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,126 +165,147 @@ public class CadastroUser extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(botaoSalvar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(63, 63, 63)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTelef, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(campoTelef, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(labelTxtCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(labelEmail)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(labelTelef, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addComponent(labelcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addComponent(labelDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jTextFieldDataN, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(labelSenha)
+                                        .addGap(116, 116, 116)
+                                        .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(label_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(labelTxtCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                        .addGap(186, 186, 186)
+                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(52, 52, 52)
                 .addComponent(labelTxtCadastrar)
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCPF))
+                    .addComponent(label_nome)
+                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelcpf))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldDataN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelDataNasc))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldTel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTelef))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelEmail))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNome))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSenha)
-                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTelef)
-                    .addComponent(campoTelef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDataNasc)
-                    .addComponent(campoDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(botaoSalvar)
-                .addContainerGap(195, Short.MAX_VALUE))
+                    .addComponent(jTextFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSenha))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoEmailActionPerformed
-
-    private void campoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoCPFActionPerformed
-
-    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeActionPerformed
-
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-    Usuario user = new Usuario();
-       user.setCPF(campoCPF.getText());
-       user.setNome(campoNome.getText());
-       user.setEmail(campoEmail.getText());
-       user.setTelefone(campoTelef.getText());
-       user.setSenha(campoSenha.getText());
-       user.setDataDeNascimento(campoDataNasc.getText());
-       ConexaoBanco BD = new ConexaoBanco();
-       BD.inserir("Usuario (cpf,nome_usuario, email, telefone, senha, data_nasc)",
-                        "(" +
-                        "\'" + user.getCPF()+ "\'" + "," + 
-                        "\'" + user.getNome()+ "\'" + "," + 
-                        "\'" + user.getEmail() + "\'" + "," + 
-                        "\'" + user.getTelefone() + "\'" + "," +  
-                        "\'" + user.getSenha() + "\'" + "," + 
-                        "\'" + user.getDataDeNascimento()+ "\'" +        
-                    ")");
+        ConexaoBanco BD = new ConexaoBanco();
+        if (user == null) {
+            user = new  Usuario(jTextFieldCPF.getText(), jTextFieldNome.getText(),jTextFieldEmail.getText(), jTextFieldTel.getText(), jTextFieldSenha.getText(), jTextFieldDataN.getText());
+            BD.inserir("usuario (cpf,nome_usuario, email, telefone, senha, data_nasc)",
+                "(" +
+                "\'" + user.getCPF()+ "\'" + "," +
+                "\'" + user.getNome()+ "\'" + "," +
+                "\'" + user.getEmail() + "\'" + "," +
+                "\'" + user.getTelefone() + "\'" + "," +
+                "\'" + user.getSenha() + "\'" + "," +
+                "\'" + user.getDataDeNascimento()+ "\'" +
+                ")");
+        } else {
+            user = new  Usuario(jTextFieldCPF.getText(), jTextFieldNome.getText(),jTextFieldEmail.getText(), jTextFieldTel.getText(), jTextFieldSenha.getText(), jTextFieldDataN.getText());
+            BD.alterar("usuario",
+                "cpf = " + "\'" + user.getCPF() + "\'" + "," +
+                "nome_usuario = " + "\'" + user.getNome() + "\'" + "," +
+                "email = " + "\'" + user.getEmail() + "\'" + "," +
+                "telefone =  " + "\'" + user.getTelefone() + "\'" + "," +
+                "senha = " + "\'" + user.getSenha() + "\'" + "," +
+                "data_nasc = " + "\'" + user.getDataDeNascimento() + "\'" +
+                "Where cpf = " + "\'" + CPF +
+                "\'");
+            user = null;
+        }
+        Interface in;
+        try {
+            in = new Interface();
+            in.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+         dispose();
         
-        Salvo salvo = new Salvo();
-        salvo.setVisible(true);
-        dispose();
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
-    private void campoSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoSenhaActionPerformed
+    private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoSenhaActionPerformed
+    }//GEN-LAST:event_jTextFieldSenhaActionPerformed
+
+    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeActionPerformed
+
+    private void jTextFieldCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCPFActionPerformed
+
+    private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,19 +345,19 @@ public class CadastroUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoSalvar;
-    private javax.swing.JTextField campoCPF;
-    private javax.swing.JTextField campoDataNasc;
-    private javax.swing.JTextField campoEmail;
-    private javax.swing.JTextField campoNome;
-    private javax.swing.JPasswordField campoSenha;
-    private javax.swing.JTextField campoTelef;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelCPF;
+    private javax.swing.JTextField jTextFieldCPF;
+    private javax.swing.JTextField jTextFieldDataN;
+    private javax.swing.JTextField jTextFieldEmail;
+    private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JPasswordField jTextFieldSenha;
+    private javax.swing.JTextField jTextFieldTel;
     private javax.swing.JLabel labelDataNasc;
     private javax.swing.JLabel labelEmail;
-    private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelSenha;
     private javax.swing.JLabel labelTelef;
     private javax.swing.JLabel labelTxtCadastrar;
+    private javax.swing.JLabel label_nome;
+    private javax.swing.JLabel labelcpf;
     // End of variables declaration//GEN-END:variables
 }

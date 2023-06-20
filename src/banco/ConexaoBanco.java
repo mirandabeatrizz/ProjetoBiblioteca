@@ -23,7 +23,7 @@ public class ConexaoBanco {
     
     
     //Conexão com o Banco de Dados
-    private final String url = "jdbc:postgresql://localhost/bancobiblioteca";
+    private final String url = "jdbc:postgresql://localhost/biblioteca";
     private final String user = "postgres";
     private final String password = "senac23";
     
@@ -49,6 +49,31 @@ public class ConexaoBanco {
         return conn;
     }
     
+    public boolean loginUsuario(String email, String senha)throws SQLException {
+         open();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT *from Usuario where email =" + "\'" + email + "\'" + "and senha = " + "\'" +senha + "\'");
+         
+            return rs.next();
+        
+        
+    }
+    
+    public ResultSet buscarDadosUser(String email){
+        try{
+            open();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT *from Usuario where email =" + "\'" + email + "\'");
+            return rs;
+        }
+        catch(SQLException e){
+            close();
+            e.printStackTrace();
+            
+            
+        }
+        return null;
+    }
         public void close() {
         try {
             if (stmt != null) {
@@ -124,6 +149,22 @@ public class ConexaoBanco {
         } catch (SQLException e) {
             close();
             e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public ResultSet buscarUS(int idusuario) {
+        try{
+            open();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT *from livro where usuario_idusuario =" + idusuario );
+            return rs;
+        }
+        catch(SQLException e){
+            close();
+            e.printStackTrace();
+            
+            
         }
         return null;
     }

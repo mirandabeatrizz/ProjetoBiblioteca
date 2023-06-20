@@ -9,18 +9,17 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.EmprestimoModel;
-import model.Endereco;
 
 /**
  *
  * @author luis.santos6
  */
-public class Emprestimo2 extends javax.swing.JFrame {
+public class Datas_Troca extends javax.swing.JFrame {
 
     /**
-     * Creates new form Emprestimo2
+     * Creates new form Datas_Troca
      */
-    public Emprestimo2() {
+    public Datas_Troca() {
         initComponents();
     }
 
@@ -164,16 +163,16 @@ public class Emprestimo2 extends javax.swing.JFrame {
                 .addComponent(btnSalvar1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(48, 48, 48)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldData1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,8 +201,7 @@ public class Emprestimo2 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,40 +211,40 @@ public class Emprestimo2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
-    EmprestimoModel em = new EmprestimoModel();
-      em.setData1(jTextFieldData1.getText());
-      em.setData2(jTextFieldData2.getText());
-      em.setData3(jTextFieldData3.getText());
-      em.setHora1(jTextFieldH1.getText());
-      em.setHora2(jTextFieldH2.getText());
-      em.setHora3(jTextFieldH3.getText());
-
-       
-       ConexaoBanco BD = new ConexaoBanco();
-       BD.inserir("dataehorario (data1, data2, data3, horario1, horario2, horario3)",
-                        "(" +
-                        "\'" + em.getData1()+ "\'" + "," + 
-                        "\'" + em.getData2()+ "\'" + "," + 
-                        "\'" + em.getData3()+ "\'" + "," + 
-                        "\'" + em.getHora1()+ "\'" + "," +  
-                        "\'" + em.getHora2()+ "\'" + "," +
-                        "\'" + em.getHora3()+ "\'" +
-                    ")");
-       
-      
-         try {
-            Interface principal = new Interface();
-        principal.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(Salvo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-    }//GEN-LAST:event_btnSalvar1ActionPerformed
-
     private void jTextFieldH2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldH2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldH2ActionPerformed
+
+    private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
+        EmprestimoModel em = new EmprestimoModel();
+        em.setData1(jTextFieldData1.getText());
+        em.setData2(jTextFieldData2.getText());
+        em.setData3(jTextFieldData3.getText());
+        em.setHora1(jTextFieldH1.getText());
+        em.setHora2(jTextFieldH2.getText());
+        em.setHora3(jTextFieldH3.getText());
+
+        ConexaoBanco BD = new ConexaoBanco();
+        BD.inserir("dataehorario (data1, data2, data3, horario1, horario2, horario3)",
+            "(" +
+            "\'" + em.getData1()+ "\'" + "," +
+            "\'" + em.getData2()+ "\'" + "," +
+            "\'" + em.getData3()+ "\'" + "," +
+            "\'" + em.getHora1()+ "\'" + "," +
+            "\'" + em.getHora2()+ "\'" + "," +
+            "\'" + em.getHora3()+ "\'" +
+            ")");
+
+        Troca tr;
+        try {
+            tr = new Troca();
+            tr.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Datas_Troca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        dispose();
+    }//GEN-LAST:event_btnSalvar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,20 +263,20 @@ public class Emprestimo2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Datas_Troca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Datas_Troca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Datas_Troca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Emprestimo2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Datas_Troca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Emprestimo2().setVisible(true);
+                new Datas_Troca().setVisible(true);
             }
         });
     }

@@ -11,34 +11,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 import model.Livro;
-import model.Usuario;
 
 /**
  *
  * @author luis.santos6
  */
-public class MeusLivros extends javax.swing.JFrame {
-    Usuario user = new Usuario();
-    
+public class Troca extends javax.swing.JFrame {
  List<Livro> listaLivros = new ArrayList<Livro>();
     /**
      * Creates new form MeusLivros
      */
-    public MeusLivros() throws SQLException {
+    public Troca() throws SQLException {
         initComponents();
-        exibirLivros();
-    }
-    
-    public MeusLivros(Usuario user) throws SQLException {
-        initComponents();
-        this.user = user;
         exibirLivros();
     }
     public void exibirLivros() throws SQLException {
         ConexaoBanco cDB = new ConexaoBanco();
         listaLivros = new ArrayList<Livro>();
-        ResultSet rs = cDB.buscarUS(user.getId());
+        ResultSet rs = cDB.buscarDados("Livro");
         while (rs.next()) {
             Livro ctn = new Livro();
             ctn.setTitulo(rs.getString("nome_livro"));
@@ -63,17 +55,7 @@ public class MeusLivros extends javax.swing.JFrame {
         
     }
     
-    private void limparTabela() {
-            for (int i = 0; i < listaLivros.size(); i++) {
-            tblLivros.setValueAt("", i, 0);
-            tblLivros.setValueAt("", i, 1);
-            tblLivros.setValueAt("", i, 2);
-            tblLivros.setValueAt("", i, 3);
-            tblLivros.setValueAt("", i, 4);
-            tblLivros.setValueAt("", i, 5);
-           
-            }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,9 +69,7 @@ public class MeusLivros extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblLivros = new javax.swing.JTable();
-        jButtonAlterar = new javax.swing.JButton();
-        jButtonExcluir = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonSelec = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -171,33 +151,13 @@ public class MeusLivros extends javax.swing.JFrame {
             tblLivros.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jButtonAlterar.setBackground(new java.awt.Color(153, 0, 255));
-        jButtonAlterar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButtonAlterar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonAlterar.setText("Alterar");
-        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSelec.setBackground(new java.awt.Color(153, 0, 255));
+        jButtonSelec.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonSelec.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSelec.setText("Selecionar");
+        jButtonSelec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAlterarActionPerformed(evt);
-            }
-        });
-
-        jButtonExcluir.setBackground(new java.awt.Color(153, 51, 255));
-        jButtonExcluir.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir.setText("Excluir");
-        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirActionPerformed(evt);
-            }
-        });
-
-        jButton3.setBackground(new java.awt.Color(153, 0, 255));
-        jButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Cadastro");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonSelecActionPerformed(evt);
             }
         });
 
@@ -219,13 +179,8 @@ public class MeusLivros extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSelec))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -236,11 +191,7 @@ public class MeusLivros extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jButtonSelec, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -259,17 +210,12 @@ public class MeusLivros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Interface inter;
-     try {
-         inter = new Interface();
-         inter.setVisible(true);
-     } catch (SQLException ex) {
-         java.util.logging.Logger.getLogger(MeusLivros.class.getName()).log(Level.SEVERE, null, ex);
-     }
+        //nterface inter = new Interface();
+        //inter.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+    private void jButtonSelecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecActionPerformed
         Livro li = new Livro();
         li.setTitulo(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 0).toString());
         li.setAutor(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 1).toString());
@@ -277,28 +223,12 @@ public class MeusLivros extends javax.swing.JFrame {
         li.setQuantidade(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 3).toString());
         li.setCategoria(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 4).toString());
         li.setImagem(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 5).toString());
-        CadastroLivro cv = new CadastroLivro(li);
-        cv.setVisible(true);
-       
-    }//GEN-LAST:event_jButtonAlterarActionPerformed
-
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        ConexaoBanco cDB = new ConexaoBanco();
-        String Titulo = tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 0).toString();
-        cDB.excluir("Livro","where nome_livro = " + "\'" + Titulo + "\'");
-        try {
-            limparTabela();
-            exibirLivros();
-        } catch (SQLException ex) {
-             java.util.logging.Logger.getLogger(MeusLivros.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CadastroLivro ct = new CadastroLivro();
-        ct.setVisible(true);
+        Trocar tr = new Trocar();
+        tr.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+
+       
+    }//GEN-LAST:event_jButtonSelecActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,9 +271,7 @@ public class MeusLivros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonAlterar;
-    private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonSelec;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblLivros;

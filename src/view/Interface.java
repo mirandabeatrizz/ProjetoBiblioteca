@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Telas;
+import model.Usuario;
 import view.CadastroLivro;
 import view.CadastroLivro;
 import view.Categorias;
@@ -32,6 +33,7 @@ public class Interface extends javax.swing.JFrame {
     int posIni;
     ImageIcon imageIcon;
     String caminhoImagem;
+    Usuario user;
 
     /**
      * Creates new form Interface
@@ -41,10 +43,19 @@ public class Interface extends javax.swing.JFrame {
         exibirLivros();
     }
 
+     public Interface (Usuario user) throws SQLException {
+        initComponents();
+        exibirLivros();
+        this.user = user;
+        
+    }
+
+    
     public void exibirLivros() throws SQLException {
         ConexaoBanco BD = new ConexaoBanco();
         listaTela = new ArrayList<Telas>();
-        ResultSet rs = BD.buscarDados("Usuario, livro");
+        ResultSet rs = BD.buscarDados("Usuario, Livro");
+       
         while (rs.next()) {
             Telas telas = new Telas();
             telas.setNome_Usuario(rs.getString("nome_usuario"));
@@ -53,6 +64,7 @@ public class Interface extends javax.swing.JFrame {
             telas.setNmr_pg(rs.getString("nmr_pg"));
             telas.setQuant(rs.getString("quant_livro"));
             telas.setImagem(rs.getString("imagem"));
+            
             listaTela.add(telas);
         }
         //for (int i = 0; i < listaTela.size(); i++) {
@@ -84,7 +96,8 @@ public class Interface extends javax.swing.JFrame {
         imageIcon = new ImageIcon(image);
         jLabelImage.setIcon(imageIcon);
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Acabou a oferta de livros, volte mais tarde para mais!");
+            Acabo1 a1 = new Acabo1();
+            a1.setVisible(true);
         }
     }
 
@@ -104,7 +117,8 @@ public class Interface extends javax.swing.JFrame {
             imageIcon = new ImageIcon(image);
             jLabelImage.setIcon(imageIcon);
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Não há uma publicação anterior à essa, veja os próximos");
+            Acabo2 a1 = new Acabo2();
+            a1.setVisible(true);
         }
         //}
     }
@@ -273,10 +287,9 @@ public class Interface extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jButtonAnt, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,32 +325,27 @@ public class Interface extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButtonMaiss, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8))))
+                                .addGap(8, 8, 8)))
+                        .addGap(24, 24, 24))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelNomeUs, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(24, 24, 24))
+                        .addComponent(jLabelNomeUs, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabelNomeUs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
+                        .addGap(156, 156, 156)
                         .addComponent(jButtonAnt, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
+                                .addGap(97, 97, 97)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabelTit))
@@ -354,12 +362,14 @@ public class Interface extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabelQuant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButtonPegar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonTrocar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addGap(0, 29, Short.MAX_VALUE)
+                                .addComponent(jLabelNomeUs, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jButtonMaiss, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,16 +380,13 @@ public class Interface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -394,14 +401,14 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonProxActionPerformed
 
     private void jButtonMaissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMaissActionPerformed
-        CadastroLivro novoLivro = new CadastroLivro();
+        CadastroLivro novoLivro = new CadastroLivro(user);
         novoLivro.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonMaissActionPerformed
 
     private void jButtonTrocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTrocarActionPerformed
-        Emprestimo emp = new Emprestimo();
-        emp.setVisible(true);
+       Endereco_Troca EndTr = new Endereco_Troca();
+       EndTr.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonTrocarActionPerformed
 
@@ -413,7 +420,7 @@ public class Interface extends javax.swing.JFrame {
 
     private void jButtonPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPerfilActionPerformed
         try {
-            MeuPerfil mp = new MeuPerfil();
+            MeuPerfil mp = new MeuPerfil(user);
             mp.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);

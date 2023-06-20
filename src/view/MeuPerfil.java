@@ -25,11 +25,18 @@ public class MeuPerfil extends javax.swing.JFrame {
     public MeuPerfil() throws SQLException  {
         initComponents();
        exibirInfo();
-       this.user = user;
-    }   
+       //this.user = user;
+    }  
     
-    public void exibirInfo() throws SQLException {
-        ConexaoBanco BD = new ConexaoBanco();
+    public MeuPerfil (Usuario user) throws SQLException {
+        this.user = user;
+        initComponents();
+        exibirInfo();
+        
+    }
+    
+    public void exibirInfo() {
+        /*ConexaoBanco BD = new ConexaoBanco();
         listaUsuarios = new ArrayList<Usuario>();
         ResultSet rs = BD.buscarDados("usuario");
         while (rs.next()) {
@@ -41,17 +48,11 @@ public class MeuPerfil extends javax.swing.JFrame {
             user.setTelefone(rs.getString("telefone"));
             user.setDataDeNascimento(rs.getString("data_nasc"));
             listaUsuarios.add(user);
-        }
-        for (int i = 0; i < listaUsuarios.size(); i++) {
-            labelNomeUser.setText(listaUsuarios.get(i).getNome());
-            labelEmailUser.setText(listaUsuarios.get(i).getEmail());
-            tblDados.setValueAt(listaUsuarios.get(i).getCPF(), i, 0);
-            tblDados.setValueAt(listaUsuarios.get(i).getNome(), i, 1);
-            tblDados.setValueAt(listaUsuarios.get(i).getEmail(), i, 2);
-            tblDados.setValueAt(listaUsuarios.get(i).getSenha(), i, 3);
-            tblDados.setValueAt(listaUsuarios.get(i).getTelefone(), i, 4);
-            tblDados.setValueAt(listaUsuarios.get(i).getDataDeNascimento(), i, 5);
-        }
+        }*/
+        //for (int i = 0; i < listaUsuarios.size(); i++) {
+            labelNomeUser.setText(user.getNome());
+            labelEmailUser.setText(user.getEmail());
+        //}
         
     }
     
@@ -68,16 +69,12 @@ public class MeuPerfil extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         labelNomeUser = new javax.swing.JLabel();
-        btnAlterar = new javax.swing.JButton();
         labelEmailUser = new javax.swing.JLabel();
         panelBiblioteca = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
+        btnMDados = new javax.swing.JButton();
         jButtonMLivros = new javax.swing.JButton();
-        jLabelMDados = new javax.swing.JLabel();
-        btnFechar = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblDados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,17 +84,6 @@ public class MeuPerfil extends javax.swing.JFrame {
         labelNomeUser.setForeground(new java.awt.Color(255, 255, 255));
         labelNomeUser.setText("Nome do Usuário");
         labelNomeUser.setMaximumSize(new java.awt.Dimension(834, 698));
-
-        btnAlterar.setBackground(new java.awt.Color(153, 0, 255));
-        btnAlterar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlterar.setText("Alterar Dados");
-        btnAlterar.setBorder(null);
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
-            }
-        });
 
         labelEmailUser.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         labelEmailUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,6 +108,38 @@ public class MeuPerfil extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout panelBibliotecaLayout = new javax.swing.GroupLayout(panelBiblioteca);
+        panelBiblioteca.setLayout(panelBibliotecaLayout);
+        panelBibliotecaLayout.setHorizontalGroup(
+            panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBibliotecaLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(btnVoltar)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelBibliotecaLayout.setVerticalGroup(
+            panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBibliotecaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        btnMDados.setBackground(new java.awt.Color(153, 0, 255));
+        btnMDados.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnMDados.setForeground(new java.awt.Color(255, 255, 255));
+        btnMDados.setText("Meus Dados");
+        btnMDados.setBorder(null);
+        btnMDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMDadosActionPerformed(evt);
+            }
+        });
+
         jButtonMLivros.setBackground(new java.awt.Color(153, 0, 255));
         jButtonMLivros.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonMLivros.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,112 +150,6 @@ public class MeuPerfil extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelBibliotecaLayout = new javax.swing.GroupLayout(panelBiblioteca);
-        panelBiblioteca.setLayout(panelBibliotecaLayout);
-        panelBibliotecaLayout.setHorizontalGroup(
-            panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBibliotecaLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(btnVoltar)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonMLivros)
-                .addGap(39, 39, 39))
-        );
-        panelBibliotecaLayout.setVerticalGroup(
-            panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBibliotecaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelBibliotecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonMLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVoltar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabelMDados.setBackground(new java.awt.Color(153, 102, 255));
-        jLabelMDados.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabelMDados.setText("Meus Dados:");
-
-        btnFechar.setBackground(new java.awt.Color(153, 102, 255));
-        btnFechar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        btnFechar.setForeground(new java.awt.Color(51, 0, 102));
-        btnFechar.setText("Fechar");
-        btnFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFecharActionPerformed(evt);
-            }
-        });
-
-        tblDados.setBackground(new java.awt.Color(153, 0, 255));
-        tblDados.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        tblDados.setForeground(new java.awt.Color(255, 255, 255));
-        tblDados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "CPF", "Nome", "E-mail", "Senha", "Telefone", "Data de Nascimento"
-            }
-        ));
-        tblDados.setAutoscrolls(false);
-        tblDados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tblDados.setGridColor(new java.awt.Color(255, 255, 255));
-        tblDados.setSelectionBackground(new java.awt.Color(255, 102, 255));
-        tblDados.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane3.setViewportView(tblDados);
-        tblDados.getAccessibleContext().setAccessibleParent(null);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -245,17 +157,14 @@ public class MeuPerfil extends javax.swing.JFrame {
             .addComponent(panelBiblioteca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnFechar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelMDados)
-                            .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(610, 610, 610))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addComponent(btnMDados, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(jButtonMLivros))
+                    .addComponent(labelNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,22 +174,20 @@ public class MeuPerfil extends javax.swing.JFrame {
                 .addComponent(labelNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jLabelMDados)
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMDados, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonMLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,20 +196,6 @@ public class MeuPerfil extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        Usuario user = new Usuario();
-        user.setCPF(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 0).toString());
-        user.setNome(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 1).toString());
-        user.setEmail(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 2).toString());
-        user.setSenha(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 3).toString());
-        user.setTelefone(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 4).toString());
-        user.setDataDeNascimento(tblDados.getModel().getValueAt(tblDados.getSelectedRow(), 5).toString());
-        
-        CadastroUser cadUser = new CadastroUser();
-        cadUser.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         try {
@@ -318,7 +211,7 @@ public class MeuPerfil extends javax.swing.JFrame {
     private void jButtonMLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMLivrosActionPerformed
         
         try {
-            MeusLivros meusL = new MeusLivros();
+            MeusLivros meusL = new MeusLivros(user);
              meusL.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(MeuPerfil.class.getName()).log(Level.SEVERE, null, ex);
@@ -327,9 +220,12 @@ public class MeuPerfil extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonMLivrosActionPerformed
 
-    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFecharActionPerformed
+    private void btnMDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMDadosActionPerformed
+        
+        CadastroUser cadUser = new CadastroUser(user);
+        cadUser.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnMDadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,17 +267,13 @@ public class MeuPerfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnFechar;
+    private javax.swing.JButton btnMDados;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JButton jButtonMLivros;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabelMDados;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelEmailUser;
     private javax.swing.JLabel labelNomeUser;
     private javax.swing.JPanel panelBiblioteca;
-    private javax.swing.JTable tblDados;
     // End of variables declaration//GEN-END:variables
 }
