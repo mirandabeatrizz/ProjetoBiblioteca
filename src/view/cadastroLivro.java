@@ -26,23 +26,15 @@ public class CadastroLivro extends javax.swing.JFrame {
     String caminhoImagem;
     Livro li;
     String Titulo;
-
-    /**
-     * Creates new form Projeto
-     */
-    public CadastroLivro() {
-        initComponents();
-    }
-    
+  
     public CadastroLivro (Usuario user){
         initComponents();
         this.user = user;
         
     }
 
-    public CadastroLivro(Livro li) {
+    public CadastroLivro(Livro li, Usuario user) {
         initComponents();
-      
         this.li = li;
         Titulo = this.li.getTitulo();
         jTextFieldTitulo.setText(this.li.getTitulo());
@@ -55,6 +47,11 @@ public class CadastroLivro extends javax.swing.JFrame {
         Image image = imageIcon.getImage().getScaledInstance(159,191,java.awt.Image.SCALE_SMOOTH);;
         imageIcon = new ImageIcon(image);
         jLabelImagem.setIcon(imageIcon);
+        this.user = user;
+    }
+
+    private CadastroLivro() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -312,26 +309,33 @@ public class CadastroLivro extends javax.swing.JFrame {
                     + ")");
 
         } else {
-            li = new Livro(jTextFieldTitulo.getText(), jTextFieldAutor.getText(),
-                    jTextFieldNumeroDePaginas.getText(), jTextFieldQuantidade.getText(), jTextFieldCategoria.getText());
+            //li = new Livro(jTextFieldTitulo.getText(), jTextFieldAutor.getText(),
+                    //jTextFieldNumeroDePaginas.getText(), jTextFieldQuantidade.getText(), jTextFieldCategoria.getText());
             BD.alterar("livro",
-                    "nome_livro = " + "\'" + li.getTitulo() + "\'" + ","
-                    + "autor = " + "\'" + li.getAutor() + "\'" + ","
-                    + "nmr_pg = " + "\'" + li.getNumeroPaginas() + "\'" + ","
-                    + "quant_livro = " + "\'" + li.getQuantidade() + "\'" + ","
-                    + "Categoria = " + "\'" + li.getCategoria() + "\'" + ","
+                    "nome_livro = " + "\'" + jTextFieldTitulo.getText() + "\'" + ","
+                    + "autor = " + "\'" + jTextFieldAutor.getText() + "\'" + ","
+                    + "nmr_pg = " + "\'" + jTextFieldNumeroDePaginas.getText() + "\'" + ","
+                    + "quant_livro = " + "\'" + jTextFieldQuantidade.getText() + "\'" + ","
+                    + "Categoria = " + "\'" +  jTextFieldCategoria.getText() + "\'" + ","
                     + "imagem = " + "\'" + caminhoImagem + "\'"
                     + "Where nome_livro = " + "\'" + Titulo + "\'");
-            li = null;
-
         }
-        this.dispose();
-        /*try {
-            MeusLivros rv = new MeusLivros(user);
+        
+        li.setTitulo(jTextFieldTitulo.getText());
+        li.setAutor(jTextFieldAutor.getText());
+        li.setNumeroPaginas(jTextFieldQuantidade.getText());
+        li.setQuantidade(jTextFieldQuantidade.getText());
+        li.setCategoria(jTextFieldCategoria.getText());
+        li.setImagem(caminhoImagem);
+        
+        
+        try {
+            Interface rv = new Interface(user);
             rv.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
+        dispose();
 
 
     }//GEN-LAST:event_jButtonSalvarActionPerformed

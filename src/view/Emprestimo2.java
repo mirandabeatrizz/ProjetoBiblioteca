@@ -10,17 +10,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.EmprestimoModel;
 import model.Endereco;
+import model.Usuario;
 
 /**
  *
  * @author luis.santos6
  */
 public class Emprestimo2 extends javax.swing.JFrame {
+   Usuario user;
 
-    /**
-     * Creates new form Emprestimo2
-     */
     public Emprestimo2() {
+        initComponents();
+    }
+    
+    public Emprestimo2(Usuario user) {
+        this.user = user;
         initComponents();
     }
 
@@ -85,7 +89,7 @@ public class Emprestimo2 extends javax.swing.JFrame {
         }
         jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
@@ -234,13 +238,8 @@ public class Emprestimo2 extends javax.swing.JFrame {
                         "\'" + em.getHora3()+ "\'" +
                     ")");
        
-      
-         try {
-            Interface principal = new Interface();
-        principal.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(Salvo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Trocar tr = new Trocar(user);
+        tr.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSalvar1ActionPerformed
 

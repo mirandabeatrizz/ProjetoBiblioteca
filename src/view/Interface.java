@@ -44,17 +44,16 @@ public class Interface extends javax.swing.JFrame {
     }
 
      public Interface (Usuario user) throws SQLException {
+        this.user = user;
         initComponents();
         exibirLivros();
-        this.user = user;
-        
     }
 
     
     public void exibirLivros() throws SQLException {
         ConexaoBanco BD = new ConexaoBanco();
         listaTela = new ArrayList<Telas>();
-        ResultSet rs = BD.buscarDados("Usuario, Livro");
+        ResultSet rs = BD.buscarId();
        
         while (rs.next()) {
             Telas telas = new Telas();
@@ -79,7 +78,7 @@ public class Interface extends javax.swing.JFrame {
         Image image = imageIcon.getImage().getScaledInstance(246, 250, java.awt.Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(image);
         jLabelImage.setIcon(imageIcon);
-        //}
+    //} 
     }
 
     public void exibirProximo() {
@@ -154,7 +153,7 @@ public class Interface extends javax.swing.JFrame {
         jLabelImage = new javax.swing.JLabel();
         jButtonAnt = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
@@ -407,13 +406,13 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonMaissActionPerformed
 
     private void jButtonTrocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTrocarActionPerformed
-       Endereco_Troca EndTr = new Endereco_Troca();
+       Endereco_Troca EndTr = new Endereco_Troca(user);
        EndTr.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonTrocarActionPerformed
 
     private void jButtonPegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPegarActionPerformed
-        Emprestimo emp = new Emprestimo();
+        Emprestimo emp = new Emprestimo(user);
         emp.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonPegarActionPerformed

@@ -13,13 +13,16 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import model.Livro;
+import model.Usuario;
 
 /**
  *
  * @author luis.santos6
  */
 public class Troca extends javax.swing.JFrame {
- List<Livro> listaLivros = new ArrayList<Livro>();
+
+     Usuario user = new Usuario();
+     List<Livro> listaLivros = new ArrayList<Livro>();
     /**
      * Creates new form MeusLivros
      */
@@ -27,10 +30,18 @@ public class Troca extends javax.swing.JFrame {
         initComponents();
         exibirLivros();
     }
+    
+    public Troca(Usuario user) throws SQLException {
+        this.user = user;
+        initComponents();
+        exibirLivros();
+        
+    }
+    
     public void exibirLivros() throws SQLException {
         ConexaoBanco cDB = new ConexaoBanco();
         listaLivros = new ArrayList<Livro>();
-        ResultSet rs = cDB.buscarDados("Livro");
+        ResultSet rs = cDB.buscarLivro(user.getId());
         while (rs.next()) {
             Livro ctn = new Livro();
             ctn.setTitulo(rs.getString("nome_livro"));
@@ -223,7 +234,7 @@ public class Troca extends javax.swing.JFrame {
         li.setQuantidade(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 3).toString());
         li.setCategoria(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 4).toString());
         li.setImagem(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 5).toString());
-        Trocar tr = new Trocar();
+        Trocar tr = new Trocar(user);
         tr.setVisible(true);
         dispose();
 

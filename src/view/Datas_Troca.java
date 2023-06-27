@@ -9,20 +9,27 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.EmprestimoModel;
+import model.Usuario;
 
 /**
  *
  * @author luis.santos6
  */
 public class Datas_Troca extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Datas_Troca
+    Usuario user;
+    
+     /* Creates new form Datas_Troca
      */
     public Datas_Troca() {
         initComponents();
+      
     }
-
+    
+    public Datas_Troca(Usuario user) {
+        initComponents();
+        this.user = user;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,7 +91,7 @@ public class Datas_Troca extends javax.swing.JFrame {
         }
         jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
@@ -237,7 +244,7 @@ public class Datas_Troca extends javax.swing.JFrame {
 
         Troca tr;
         try {
-            tr = new Troca();
+            tr = new Troca(user);
             tr.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(Datas_Troca.class.getName()).log(Level.SEVERE, null, ex);

@@ -31,14 +31,15 @@ public class MeusLivros extends javax.swing.JFrame {
     }
     
     public MeusLivros(Usuario user) throws SQLException {
-        initComponents();
         this.user = user;
+        initComponents();
         exibirLivros();
     }
+    
     public void exibirLivros() throws SQLException {
         ConexaoBanco cDB = new ConexaoBanco();
         listaLivros = new ArrayList<Livro>();
-        ResultSet rs = cDB.buscarUS(user.getId());
+        ResultSet rs = cDB.buscarLivro(user.getId());
         while (rs.next()) {
             Livro ctn = new Livro();
             ctn.setTitulo(rs.getString("nome_livro"));
@@ -89,8 +90,9 @@ public class MeusLivros extends javax.swing.JFrame {
         tblLivros = new javax.swing.JTable();
         jButtonAlterar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonCad = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButtonAt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -181,7 +183,7 @@ public class MeusLivros extends javax.swing.JFrame {
             }
         });
 
-        jButtonExcluir.setBackground(new java.awt.Color(153, 51, 255));
+        jButtonExcluir.setBackground(new java.awt.Color(153, 0, 255));
         jButtonExcluir.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExcluir.setText("Excluir");
@@ -191,13 +193,13 @@ public class MeusLivros extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(153, 0, 255));
-        jButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Cadastro");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCad.setBackground(new java.awt.Color(153, 0, 255));
+        jButtonCad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonCad.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCad.setText("Cadastrar");
+        jButtonCad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonCadActionPerformed(evt);
             }
         });
 
@@ -211,6 +213,16 @@ public class MeusLivros extends javax.swing.JFrame {
             }
         });
 
+        jButtonAt.setBackground(new java.awt.Color(153, 0, 255));
+        jButtonAt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButtonAt.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAt.setText("Atualizar");
+        jButtonAt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,14 +230,19 @@ public class MeusLivros extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonCad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAt))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 953, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -240,7 +257,8 @@ public class MeusLivros extends javax.swing.JFrame {
                     .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonCad, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonAt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -261,7 +279,7 @@ public class MeusLivros extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Interface inter;
      try {
-         inter = new Interface();
+         inter = new Interface(user);
          inter.setVisible(true);
      } catch (SQLException ex) {
          java.util.logging.Logger.getLogger(MeusLivros.class.getName()).log(Level.SEVERE, null, ex);
@@ -277,8 +295,9 @@ public class MeusLivros extends javax.swing.JFrame {
         li.setQuantidade(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 3).toString());
         li.setCategoria(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 4).toString());
         li.setImagem(tblLivros.getModel().getValueAt(tblLivros.getSelectedRow(), 5).toString());
-        CadastroLivro cv = new CadastroLivro(li);
+        CadastroLivro cv = new CadastroLivro(li, user);
         cv.setVisible(true);
+        dispose();
        
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
@@ -294,11 +313,42 @@ public class MeusLivros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CadastroLivro ct = new CadastroLivro();
+    private void jButtonCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadActionPerformed
+       
+        CadastroLivro ct = new CadastroLivro(user);
         ct.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonCadActionPerformed
+
+    private void jButtonAtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtActionPerformed
+        ConexaoBanco cDB = new ConexaoBanco();
+        listaLivros = new ArrayList<Livro>();
+        ResultSet rs = cDB.buscarLivro(user.getId());
+        try {
+            while (rs.next()) {
+                Livro ctn = new Livro();
+                ctn.setTitulo(rs.getString("nome_livro"));
+                ctn.setAutor(rs.getString("autor"));
+                ctn.setNumeroPaginas(rs.getString("nmr_pg"));
+                ctn.setQuantidade(rs.getString("quant_livro"));
+                ctn.setCategoria(rs.getString("Categoria"));
+                ctn.setImagem(rs.getString("imagem"));
+                listaLivros.add(ctn);
+            }
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(MeusLivros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < listaLivros.size(); i++) {
+            tblLivros.setValueAt(listaLivros.get(i).getTitulo(), i, 0);
+            tblLivros.setValueAt(listaLivros.get(i).getAutor(), i, 1);
+            tblLivros.setValueAt(listaLivros.get(i).getNumeroPaginas(), i, 2);
+            tblLivros.setValueAt(listaLivros.get(i).getQuantidade(), i, 3);
+            tblLivros.setValueAt(listaLivros.get(i).getCategoria(), i, 4);
+            tblLivros.setValueAt(listaLivros.get(i).getImagem(), i, 5);
+           
+            
+        }
+    }//GEN-LAST:event_jButtonAtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,8 +391,9 @@ public class MeusLivros extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAlterar;
+    private javax.swing.JButton jButtonAt;
+    private javax.swing.JButton jButtonCad;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;

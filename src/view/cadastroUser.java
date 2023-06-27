@@ -15,9 +15,11 @@ import model.Usuario;
  * @author adris
  */
 public class CadastroUser extends javax.swing.JFrame {
+
     Usuario user;
     //Usuario us;
     String CPF;
+
     /**
      * Creates new form cadastroUser
      */
@@ -25,7 +27,7 @@ public class CadastroUser extends javax.swing.JFrame {
         initComponents();
     }
 
-   /* public CadastroUser(Usuario user) {
+    public CadastroUser(Usuario user) {
         initComponents();
         this.user = user;
         CPF = this.user.getCPF();
@@ -36,17 +38,6 @@ public class CadastroUser extends javax.swing.JFrame {
         jTextFieldTel.setText(this.user.getTelefone());
         jTextFieldDataN.setText(this.user.getDataDeNascimento());
 
-    }*/
-    
-    public CadastroUser (Usuario user) {
-        initComponents();
-        this.user = user;
-        jTextFieldCPF.setText(this.user.getCPF());
-        jTextFieldNome.setText(this.user.getNome());
-        jTextFieldEmail.setText(this.user.getEmail());
-        jTextFieldSenha.setText(this.user.getSenha());
-        jTextFieldTel.setText(this.user.getTelefone());
-        jTextFieldDataN.setText(this.user.getDataDeNascimento());
     }
 
     /**
@@ -92,7 +83,7 @@ public class CadastroUser extends javax.swing.JFrame {
         labelcpf = new javax.swing.JLabel();
         label_nome = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
@@ -256,39 +247,44 @@ public class CadastroUser extends javax.swing.JFrame {
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         ConexaoBanco BD = new ConexaoBanco();
         if (user == null) {
-            user = new  Usuario(jTextFieldCPF.getText(), jTextFieldNome.getText(),jTextFieldEmail.getText(), jTextFieldTel.getText(), jTextFieldSenha.getText(), jTextFieldDataN.getText());
-            BD.inserir("usuario (cpf,nome_usuario, email, telefone, senha, data_nasc)",
-                "(" +
-                "\'" + user.getCPF()+ "\'" + "," +
-                "\'" + user.getNome()+ "\'" + "," +
-                "\'" + user.getEmail() + "\'" + "," +
-                "\'" + user.getTelefone() + "\'" + "," +
-                "\'" + user.getSenha() + "\'" + "," +
-                "\'" + user.getDataDeNascimento()+ "\'" +
-                ")");
+            user = new Usuario(jTextFieldCPF.getText(), jTextFieldNome.getText(), jTextFieldEmail.getText(), jTextFieldTel.getText(), jTextFieldSenha.getText(), jTextFieldDataN.getText());
+            user.setId(BD.inserir2("usuario (cpf,nome_usuario, email, telefone, senha, data_nasc)",
+                    "("
+                    + "\'" + user.getCPF() + "\'" + ","
+                    + "\'" + user.getNome() + "\'" + ","
+                    + "\'" + user.getEmail() + "\'" + ","
+                    + "\'" + user.getTelefone() + "\'" + ","
+                    + "\'" + user.getSenha() + "\'" + ","
+                    + "\'" + user.getDataDeNascimento() + "\'"
+                    //+ user.getId()
+                    + ")"));
         } else {
-            user = new  Usuario(jTextFieldCPF.getText(), jTextFieldNome.getText(),jTextFieldEmail.getText(), jTextFieldTel.getText(), jTextFieldSenha.getText(), jTextFieldDataN.getText());
+            //user = new  Usuario(jTextFieldCPF.getText(), jTextFieldNome.getText(),jTextFieldEmail.getText(), jTextFieldTel.getText(), jTextFieldSenha.getText(), jTextFieldDataN.getText());            
             BD.alterar("usuario",
-                "cpf = " + "\'" + user.getCPF() + "\'" + "," +
-                "nome_usuario = " + "\'" + user.getNome() + "\'" + "," +
-                "email = " + "\'" + user.getEmail() + "\'" + "," +
-                "telefone =  " + "\'" + user.getTelefone() + "\'" + "," +
-                "senha = " + "\'" + user.getSenha() + "\'" + "," +
-                "data_nasc = " + "\'" + user.getDataDeNascimento() + "\'" +
-                "Where cpf = " + "\'" + CPF +
-                "\'");
-            user = null;
+                    "cpf = " + "\'" + jTextFieldCPF.getText() + "\'" + ","
+                    + "nome_usuario = " + "\'" + jTextFieldNome.getText() + "\'" + ","
+                    + "email = " + "\'" + jTextFieldEmail.getText() + "\'" + ","
+                    + "telefone =  " + "\'" + jTextFieldTel.getText() + "\'" + ","
+                    + "senha = " + "\'" + jTextFieldSenha.getText() + "\'" + ","
+                    + "data_nasc = " + "\'" + jTextFieldDataN.getText() + "\'"
+                    + "Where cpf = " + "\'" + CPF + "\'");
         }
+        user.setCPF(jTextFieldCPF.getText());
+        user.setNome(jTextFieldNome.getText());
+        user.setEmail(jTextFieldEmail.getText());
+        user.setTelefone(jTextFieldTel.getText());
+        user.setSenha(jTextFieldSenha.getText());
+        user.setDataDeNascimento(jTextFieldDataN.getText());
+
         Interface in;
         try {
-            in = new Interface();
+            in = new Interface(user);
             in.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(CadastroUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-         dispose();
-        
+        dispose();
+
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed

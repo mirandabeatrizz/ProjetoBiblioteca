@@ -13,12 +13,17 @@ import model.Usuario;
  * @author luis.santos6
  */
 public class Emprestimo extends javax.swing.JFrame {
-
+    Usuario user;
     /**
      * Creates new form Emprestimo
      */
     public Emprestimo() {
         initComponents();
+    }
+    
+    public Emprestimo(Usuario user) {
+        initComponents();
+        this.user = user;
     }
 
     /**
@@ -47,7 +52,7 @@ public class Emprestimo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldMens = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
@@ -67,7 +72,7 @@ public class Emprestimo extends javax.swing.JFrame {
         labelRef.setForeground(new java.awt.Color(255, 255, 255));
         labelRef.setText("Referência:");
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Escolha um ponto de encontro público e de fácil acesso:");
 
@@ -87,6 +92,7 @@ public class Emprestimo extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mensagem:");
 
@@ -100,7 +106,7 @@ public class Emprestimo extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 23, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(108, 108, 108))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -112,38 +118,40 @@ public class Emprestimo extends javax.swing.JFrame {
                                         .addComponent(labelEstado)
                                         .addComponent(labelRef, javax.swing.GroupLayout.Alignment.TRAILING))
                                     .addComponent(jLabel2))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoRef, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(30, 30, 30)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(campoBairro, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldEstado)
-                                            .addComponent(campoRef))
-                                        .addGap(49, 49, 49)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelCidade)
-                                            .addComponent(jLabelRua))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextFieldCidade)
-                                            .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldMens)))))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(campoBairro, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                                                    .addComponent(jTextFieldEstado))
+                                                .addGap(49, 49, 49)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(labelCidade)
+                                                    .addComponent(jLabelRua))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jTextFieldCidade)
+                                                    .addComponent(jTextFieldRua, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jTextFieldMens, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(159, 159, 159))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1))
-                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEstado)
                     .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,18 +172,18 @@ public class Emprestimo extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(18, 18, 18)
                         .addComponent(jTextFieldMens, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,26 +194,27 @@ public class Emprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    Endereco user = new Endereco();
-       user.setBairro(campoBairro.getText());
-       user.setRef(campoRef.getText());
-       user.setEstado(jTextFieldEstado.getText());
-       user.setCidade(jTextFieldCidade.getText());
-       user.setRua(jTextFieldRua.getText());
-       user.setMensagem(jTextFieldMens.getText());
+    Endereco us = new Endereco();
+       us.setBairro(campoBairro.getText());
+       us.setRef(campoRef.getText());
+       us.setEstado(jTextFieldEstado.getText());
+       us.setCidade(jTextFieldCidade.getText());
+       us.setRua(jTextFieldRua.getText());
+       us.setMensagem(jTextFieldMens.getText());
        
        ConexaoBanco BD = new ConexaoBanco();
-       BD.inserir("endereco (bairro, referencia, estado, cidade, rua, mensagem)",
+       BD.inserir("endereco (bairro, referencia, estado, cidade, rua, mensagem, usuario_idusuario)",
                         "(" +
-                        "\'" + user.getBairro()+ "\'" + "," + 
-                        "\'" + user.getRef() + "\'" + "," +
-                        "\'" + user.getEstado()+ "\'" + "," + 
-                        "\'" + user.getCidade()+ "\'" + "," + 
-                        "\'" + user.getRua()+ "\'" + "," + 
-                        "\'" + user.getMensagem()+ "\'" +    
+                        "\'" + us.getBairro()+ "\'" + "," + 
+                        "\'" + us.getRef() + "\'" + "," +
+                        "\'" + us.getEstado()+ "\'" + "," + 
+                        "\'" + us.getCidade()+ "\'" + "," + 
+                        "\'" + us.getRua()+ "\'" + "," + 
+                        "\'" + us.getMensagem()+ "\'" + "," +
+                        user.getId() +
                     ")");
        
-       Emprestimo2 e2 = new Emprestimo2();
+       Emprestimo2 e2 = new Emprestimo2(user);
        e2.setVisible(true);
        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

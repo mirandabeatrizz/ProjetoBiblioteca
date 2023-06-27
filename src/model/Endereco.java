@@ -16,6 +16,7 @@ public class Endereco {
     private String ref;
     private String rua;
     private String mensagem;
+    private String idere;
     
     public Endereco(){
         

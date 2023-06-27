@@ -35,10 +35,10 @@ public class MeuPerfil extends javax.swing.JFrame {
         
     }
     
-    public void exibirInfo() {
-        /*ConexaoBanco BD = new ConexaoBanco();
+    public void exibirInfo() throws SQLException {
+        ConexaoBanco BD = new ConexaoBanco();
         listaUsuarios = new ArrayList<Usuario>();
-        ResultSet rs = BD.buscarDados("usuario");
+        ResultSet rs = BD.buscarUs(user.getId());
         while (rs.next()) {
             Usuario user = new Usuario();
             user.setCPF(rs.getString("cpf"));
@@ -48,7 +48,7 @@ public class MeuPerfil extends javax.swing.JFrame {
             user.setTelefone(rs.getString("telefone"));
             user.setDataDeNascimento(rs.getString("data_nasc"));
             listaUsuarios.add(user);
-        }*/
+        }
         //for (int i = 0; i < listaUsuarios.size(); i++) {
             labelNomeUser.setText(user.getNome());
             labelEmailUser.setText(user.getEmail());
@@ -76,7 +76,7 @@ public class MeuPerfil extends javax.swing.JFrame {
         btnMDados = new javax.swing.JButton();
         jButtonMLivros = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
@@ -199,7 +199,7 @@ public class MeuPerfil extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         try {
-            Interface principal = new Interface();
+            Interface principal = new Interface(user);
         principal.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(MeuPerfil.class.getName()).log(Level.SEVERE, null, ex);

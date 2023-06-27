@@ -10,13 +10,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import model.Usuario;
 
 /**
  *
  * @author beatriz.miranda
  */
 public class ConexaoBanco {
-
+     Usuario user;
     /**
      * @param args the command line arguments
      */
@@ -24,8 +25,9 @@ public class ConexaoBanco {
     
     //Conexão com o Banco de Dados
     private final String url = "jdbc:postgresql://localhost/biblioteca";
-    private final String user = "postgres";
+    private final String us = "postgres";
     private final String password = "senac23";
+    private int chave;
     
     private Connection conn;
     private PreparedStatement pstmt;
@@ -40,7 +42,7 @@ public class ConexaoBanco {
     public Connection open() {
         conn = null;
         try {
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url, us, password);
             System.out.println("Parabéns conectado com sucesso");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -59,21 +61,6 @@ public class ConexaoBanco {
         
     }
     
-    public ResultSet buscarDadosUser(String email){
-        try{
-            open();
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT *from Usuario where email =" + "\'" + email + "\'");
-            return rs;
-        }
-        catch(SQLException e){
-            close();
-            e.printStackTrace();
-            
-            
-        }
-        return null;
-    }
         public void close() {
         try {
             if (stmt != null) {
@@ -101,6 +88,32 @@ public class ConexaoBanco {
             close();
             e.printStackTrace();
         }
+    }
+    public int inserir2(String tabela, String valores) {
+        try {
+            ResultSet result;
+            // Abrindo a conexão com o banco
+            open();
+            // Instanciando o objeto statement (stmt)
+            pstmt = conn.prepareStatement(
+                    "INSERT INTO " + tabela + " VALUES " + valores + "", Statement.RETURN_GENERATED_KEYS);
+            // Fechando a conexão com o banco
+            pstmt.execute();
+            result = pstmt.getGeneratedKeys();
+            if (result.next() && result != null) {
+                //Coluna que representa o campo do time serial começando em 1;
+                chave = result.getInt(1);
+            } else {
+                chave = -1;
+            }
+            //chave = stmt.getGeneratedKeys().next().getInt(0);
+            close();
+        } catch (SQLException e) {
+            // Fechando a conexão com o banco
+            close();
+            e.printStackTrace();
+        }
+        return chave;
     }
 
     public void alterar(String tabela, String valores) {
@@ -153,7 +166,23 @@ public class ConexaoBanco {
         return null;
     }
     
-    public ResultSet buscarUS(int idusuario) {
+     public ResultSet buscarDadosUser(String email){
+        try{
+            open();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT *from Usuario where email =" + "\'" + email + "\'");
+            return rs;
+        }
+        catch(SQLException e){
+            close();
+            e.printStackTrace();
+            
+            
+        }
+        return null;
+    }
+    
+    public ResultSet buscarLivro(int idusuario) {
         try{
             open();
             stmt = conn.createStatement();
@@ -164,6 +193,36 @@ public class ConexaoBanco {
             close();
             e.printStackTrace();
             
+        }
+        return null;
+    }
+    
+    public ResultSet buscarUs(int idusuario) {
+        try{
+            open();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT *from usuario where idusuario =" + idusuario );
+            return rs;
+        }
+        catch(SQLException e){
+            close();
+            e.printStackTrace();
+            
+        }
+        return null;
+    }
+    
+    public ResultSet buscarId() {
+        try{
+            open();
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(" SELECT nome_usuario, nome_livro, autor, nmr_pg, quant_livro, imagem, categoria FROM livro JOIN usuario "
+                    + "ON usuario_idusuario = idusuario WHERE idusuario = usuario_idusuario");
+            return rs;
+        }
+        catch(SQLException e){
+            close();
+            e.printStackTrace();
             
         }
         return null;
