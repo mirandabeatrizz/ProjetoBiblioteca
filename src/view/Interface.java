@@ -19,7 +19,6 @@ import model.Telas;
 import model.Usuario;
 import view.CadastroLivro;
 import view.CadastroLivro;
-import view.Categorias;
 import view.Emprestimo;
 import view.MeuPerfil;
 
@@ -135,7 +134,6 @@ public class Interface extends javax.swing.JFrame {
         jLabelNomeUs = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButtonCat = new javax.swing.JButton();
         jButtonPerfil = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -168,17 +166,6 @@ public class Interface extends javax.swing.JFrame {
         jLabel3.setText("Biblioteca Comunitária");
         jLabel3.setMaximumSize(new java.awt.Dimension(834, 698));
 
-        jButtonCat.setBackground(new java.awt.Color(153, 0, 255));
-        jButtonCat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButtonCat.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonCat.setText("-");
-        jButtonCat.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jButtonCat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCatActionPerformed(evt);
-            }
-        });
-
         jButtonPerfil.setBackground(new java.awt.Color(153, 0, 255));
         jButtonPerfil.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButtonPerfil.setForeground(new java.awt.Color(255, 255, 255));
@@ -194,11 +181,9 @@ public class Interface extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jButtonCat)
-                .addGap(45, 45, 45)
+                .addGap(93, 93, 93)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
                 .addComponent(jButtonPerfil)
                 .addGap(15, 15, 15))
         );
@@ -208,7 +193,6 @@ public class Interface extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCat)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
@@ -427,12 +411,6 @@ public class Interface extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonPerfilActionPerformed
 
-    private void jButtonCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCatActionPerformed
-        Categorias cat = new Categorias();
-        cat.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButtonCatActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -474,7 +452,6 @@ public class Interface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnt;
-    private javax.swing.JButton jButtonCat;
     private javax.swing.JButton jButtonMaiss;
     private javax.swing.JButton jButtonPegar;
     private javax.swing.JButton jButtonPerfil;
